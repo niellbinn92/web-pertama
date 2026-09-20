@@ -2,23 +2,24 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Admin Panel - Import Key Store</title>
+  <title>Admin Panel - Import Massal Key</title>
   <style>
-    body { font-family: sans-serif; background: #121212; color: #fff; padding: 30px; }
-    .card { background: #1e1e1e; padding: 20px; border-radius: 8px; max-width: 600px; margin: 0 auto; }
-    label { display: block; margin-top: 15px; font-weight: bold; }
-    select, textarea, button { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #444; background: #2a2a2a; color: #fff; box-sizing: border-box; }
-    textarea { height: 150px; font-family: monospace; }
-    button { background: #6200ee; color: #fff; font-weight: bold; cursor: pointer; margin-top: 20px; border: none; }
+    body { font-family: Arial, sans-serif; background: #121212; color: #fff; padding: 20px; }
+    .card { max-width: 500px; margin: 0 auto; background: #1e1e1e; padding: 20px; border-radius: 10px; }
+    label { font-weight: bold; display: block; margin-top: 15px; }
+    select, textarea, button { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: none; box-sizing: border-box; }
+    textarea { height: 120px; font-family: monospace; background: #2a2a2a; color: #fff; }
+    select { background: #2a2a2a; color: #fff; }
+    button { background: #6200ee; color: #fff; font-weight: bold; cursor: pointer; margin-top: 20px; font-size: 15px; }
     button:hover { background: #3700b3; }
-    #status { margin-top: 15px; font-weight: bold; }
+    #status { margin-top: 15px; font-weight: bold; text-align: center; }
   </style>
 </head>
 <body>
 
 <div class="card">
   <h2>⚡ Halaman Import Massal Key</h2>
-  
+
   <label for="produk">Pilih Produk:</label>
   <select id="produk">
     <option value="DRIP APKMOD">DRIP APKMOD</option>
@@ -36,9 +37,9 @@
   </select>
 
   <label for="keys">Tempel/Paste Key (1 Key per Baris):</label>
-  <textarea id="keys" placeholder="Contoh:&#10;KEY-ABC-111&#10;KEY-ABC-222&#10;KEY-ABC-333"></textarea>
+  <textarea id="keys" placeholder="Contoh:&#10;KEY123&#10;KEY456&#10;KEY789"></textarea>
 
-  <button id="btnUpload">🚀 Upload Semua Key Ke Firestore</button>
+  <button type="button" id="btnUpload">🚀 Upload Semua Key Ke Firestore</button>
 
   <div id="status"></div>
 </div>
@@ -47,8 +48,7 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  // PASTE KONFIGURASI FIREBASE KAMU DI SINI
- const firebaseConfig = {
+  const firebaseConfig = {
     apiKey: "AIzaSyBsNz0BS6cQq2HOl4RIIPf4Rr9OJCeN61I",
     authDomain: "dripstore-db.firebaseapp.com",
     projectId: "dripstore-db",
@@ -57,19 +57,16 @@
     appId: "1:296010248275:web:fb1ce779089f336c8dd6a6",
     measurementId: "G-9MXTJ6SLMV"
   };
-    // Foto/Salin config Firebase kamu dari script.js di sini
-  };
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  document.getElementById("btnUpload").addEventListener("click", async () => {
+  document.getElementById("btnUpload").onclick = async function() {
     const produk = document.getElementById("produk").value;
     const durasi = document.getElementById("durasi").value;
     const rawKeys = document.getElementById("keys").value;
     const statusDiv = document.getElementById("status");
 
-    // Split teks per baris & bersihkan spasi kosong
     const keyList = rawKeys.split("\n").map(k => k.trim()).filter(k => k !== "");
 
     if (keyList.length === 0) {
@@ -100,7 +97,7 @@
       statusDiv.style.color = "red";
       statusDiv.innerText = "❌ Gagal mengunggah: " + err.message;
     }
-  });
+  };
 </script>
 
 </body>
