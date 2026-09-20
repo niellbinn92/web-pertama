@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel - Import Key Store</title>
+  <style>
+    body { font-family: sans-serif; background: #121212; color: #fff; padding: 30px; }
+    .card { background: #1e1e1e; padding: 20px; border-radius: 8px; max-width: 600px; margin: 0 auto; }
+    label { display: block; margin-top: 15px; font-weight: bold; }
+    select, textarea, button { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #444; background: #2a2a2a; color: #fff; box-sizing: border-box; }
+    textarea { height: 150px; font-family: monospace; }
+    button { background: #6200ee; color: #fff; font-weight: bold; cursor: pointer; margin-top: 20px; border: none; }
+    button:hover { background: #3700b3; }
+    #status { margin-top: 15px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h2>⚡ Halaman Import Massal Key</h2>
+  
+  <label for="produk">Pilih Produk:</label>
+  <select id="produk">
+    <option value="DRIP APKMOD">DRIP APKMOD</option>
+    <option value="DRIP PROXY">DRIP PROXY</option>
+    <option value="DRIP WIRE">DRIP WIRE</option>
+    <option value="DRIP ROOT">DRIP ROOT</option>
+  </select>
+
+  <label for="durasi">Pilih Durasi:</label>
+  <select id="durasi">
+    <option value="1 Day">1 Day</option>
+    <option value="3 Day">3 Day</option>
+    <option value="7 Day">7 Day</option>
+    <option value="30 Day">30 Day</option>
+  </select>
+
+  <label for="keys">Tempel/Paste Key (1 Key per Baris):</label>
+  <textarea id="keys" placeholder="Contoh:&#10;KEY-ABC-111&#10;KEY-ABC-222&#10;KEY-ABC-333"></textarea>
+
+  <button id="btnUpload">🚀 Upload Semua Key Ke Firestore</button>
+
+  <div id="status"></div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  // PASTE KONFIGURASI FIREBASE KAMU DI SINI
+  const firebaseConfig = {
+    // Foto/Salin config Firebase kamu dari script.js di sini
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  document.getElementById("btnUpload").addEventListener("click", async () => {
+    const produk = document.getElementById("produk").value;
+    const durasi = document.getElementById("durasi").value;
+    const rawKeys = document.getElementById("keys").value;
+    const statusDiv = document.getElementById("status");
+
+    // Split teks per baris & bersihkan spasi kosong
+    const keyList = rawKeys.split("\n").map(k => k.trim()).filter(k => k !== "");
+
+    if (keyList.length === 0) {
+      alert("Masukkan minimal 1 key dulu, Bos!");
+      return;
+    }
+
+    statusDiv.style.color = "yellow";
+    statusDiv.innerText = `Sedang mengunggah ${keyList.length} key... Mohon tunggu...`;
+
+    try {
+      let suksesCount = 0;
+      for (const key of keyList) {
+        await addDoc(collection(db, "stok_key"), {
+          key: key,
+          produk: produk,
+          durasi: durasi,
+          status: "tersedia"
+        });
+        suksesCount++;
+      }
+
+      statusDiv.style.color = "#00ff66";
+      statusDiv.innerText = `✅ SUKSES! ${suksesCount} key berhasil di-upload ke Firestore!`;
+      document.getElementById("keys").value = "";
+    } catch (err) {
+      console.error(err);
+      statusDiv.style.color = "red";
+      statusDiv.innerText = "❌ Gagal mengunggah: " + err.message;
+    }
+  });
+</script>
+
+</body>
+</html>
