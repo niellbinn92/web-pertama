@@ -3,22 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Aman Bos</title>
+    <title>DRIP OFFICIAL STORE - Premium Tools & Services</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Font Google Inter agar terlihat seperti web developer profesional -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="card">
-        <h1>Halo, Bos!</h1>
-        <p>Website ini bersih, cepat, dan siap di-upload ke GitHub Pages.</p>
-        
-        <div class="form-group">
-            <input type="text" id="namaInput" placeholder="Masukkan nama Anda...">
-            <button id="sapaBtn">Kirim Sapaan</button>
-        </div>
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="logo">DRIP<span>STORE</span></div>
+        <div class="nav-badge">Online 24/7</div>
+    </header>
 
-        <p id="hasilOutput" class="output"></p>
-    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>High-Performance DRIP Tools</h1>
+        <p>Platform penyedia layanan dan aplikasi premium terpercaya, cepat, dan aman.</p>
+    </section>
+
+    <!-- Katalog Produk -->
+    <main class="container">
+        <div class="product-grid">
+
+            <!-- Produk 1 -->
+            <div class="product-card">
+                <div class="badge-stock">Ready Stock</div>
+                <h3>DRIP APKMOD</h3>
+                <p class="desc">Aplikasi modifikasi eksklusif dengan fitur unlock penuh dan performa maksimal.</p>
+                <div class="price">Rp 75.000</div>
+                <button class="buy-btn" onclick="beliProduk('DRIP APKMOD', '75000')">Beli via GoPay</button>
+            </div>
+
+            <!-- Produk 2 -->
+            <div class="product-card">
+                <div class="badge-stock">Ready Stock</div>
+                <h3>DRIP PROXY</h3>
+                <p class="desc">Jalur proxy berkecepatan tinggi, stabil, dan aman untuk kebutuhan koneksi privat.</p>
+                <div class="price">Rp 120.000</div>
+                <button class="buy-btn" onclick="beliProduk('DRIP PROXY', '120000')">Beli via GoPay</button>
+            </div>
+
+            <!-- Produk 3 -->
+            <div class="product-card">
+                <div class="badge-stock">Ready Stock</div>
+                <h3>DRIP WIRE</h3>
+                <p class="desc">Solusi enkripsi jaringan tingkat lanjut untuk mengamankan data dan privasi Anda.</p>
+                <div class="price">Rp 95.000</div>
+                <button class="buy-btn" onclick="beliProduk('DRIP WIRE', '95000')">Beli via GoPay</button>
+            </div>
+
+            <!-- Produk 4 -->
+            <div class="product-card">
+                <div class="badge-stock">Ready Stock</div>
+                <h3>DRIP ROOT</h3>
+                <p class="desc">Akses utilitas sistem level tinggi untuk optimalisasi perangkat secara total.</p>
+                <div class="price">Rp 150.000</div>
+                <button class="buy-btn" onclick="beliProduk('DRIP ROOT', '150000')">Beli via GoPay</button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 DRIP Store. All rights reserved.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
