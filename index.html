@@ -172,5 +172,38 @@
 
     <!-- SCRIPT FIREBASE & UTILS -->
     <script type="module" src="script.js"></script>
+
+    <!-- SCRIPT PROTEKSI ANTI KLIK KANAN & INSPECT ELEMENT (F12) -->
+    <script>
+        // 1. Blokir Klik Kanan
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert('Right click is disabled on this site.');
+        });
+
+        // 2. Blokir Tombol Pintas DevTools / F12
+        document.addEventListener('keydown', function(e) {
+            // F12
+            if (e.key === 'F12') {
+                e.preventDefault();
+                alert('Inspect element is disabled!');
+            }
+            // Ctrl + Shift + I
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) {
+                e.preventDefault();
+                alert('Inspect element is disabled!');
+            }
+            // Ctrl + Shift + J
+            if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) {
+                e.preventDefault();
+                alert('Inspect element is disabled!');
+            }
+            // Ctrl + U
+            if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+                e.preventDefault();
+                alert('View source is disabled!');
+            }
+        });
+    </script>
 </body>
 </html>
