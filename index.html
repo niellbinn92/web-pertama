@@ -3,63 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DRIP OFFICIAL STORE - Premium Tools & Services</title>
+    <title>DRIP STORE - Premium Tools</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
+    <!-- NAVBAR ATAS -->
     <header class="navbar">
-        <div class="logo">DRIP<span>STORE</span></div>
-        <div class="nav-badge">Online 24/7</div>
+        <div class="logo-area">
+            <div class="store-icon"><i class="fa-solid fa-store"></i></div>
+            <span class="store-title">DRIP STORE</span>
+        </div>
+        <div class="nav-right">
+            <button class="icon-btn" id="userBtn" onclick="bukaModalAkun()"><i class="fa-solid fa-user"></i></button>
+            <button class="icon-btn"><i class="fa-solid fa-gear"></i></button>
+        </div>
     </header>
 
-    <section class="hero">
-        <h1>High-Performance DRIP Tools</h1>
-        <p>Platform penyedia layanan dan aplikasi premium terpercaya, cepat, dan aman.</p>
-    </section>
+    <!-- BANNER / HEADER -->
+    <div class="banner">
+        <p>Official Products & 24/7 instant delivery support.</p>
+    </div>
 
+    <!-- KONTROL AKUN / STATUS USER -->
+    <div class="user-bar" id="userBarContainer">
+        <div class="user-info-text">
+            <span id="greetingUser">Halo, Tamu</span>
+            <small id="statusUser">Belum masuk akun</small>
+        </div>
+        <button class="account-action-btn" id="authActionBtn" onclick="bukaModalAkun()">Masuk / Daftar</button>
+    </div>
+
+    <!-- DAFTAR PRODUK (KATALOG) -->
     <main class="container">
+        <h2 class="section-title">Our Products</h2>
+        
         <div class="product-grid">
 
+            <!-- Produk 1 -->
             <div class="product-card">
-                <div class="badge-stock">Ready Stock</div>
+                <div class="product-header">
+                    <span class="p-icon">🤖</span>
+                    <span class="verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                </div>
                 <h3>DRIP APKMOD</h3>
-                <p class="desc">Aplikasi modifikasi eksklusif dengan fitur unlock penuh dan performa maksimal.</p>
-                <div class="price">Rp 75.000</div>
-                <button class="buy-btn" onclick="beliProduk('DRIP APKMOD', '75000')">Beli via GoPay</button>
+                <div class="rating">★★★★★ <span class="rate-count">5 (183)</span></div>
+                <p class="p-desc">Drip Client Mobile The ultimate solution for Free Fire...</p>
+                <div class="tag-os">ANDROID MODAPK NO ROOT</div>
+                <div class="price-row">
+                    <span class="price-label">From</span>
+                    <span class="price-val">Rp9,600</span>
+                </div>
+                <div class="card-buttons">
+                    <button class="buy-btn" onclick="beliProduk('DRIPMODAPK', 9600)">
+                        <i class="fa-solid fa-cart-shopping"></i> Buy
+                    </button>
+                </div>
             </div>
 
+            <!-- Produk 2 -->
             <div class="product-card">
-                <div class="badge-stock">Ready Stock</div>
+                <div class="product-header">
+                    <span class="p-icon">🤖</span>
+                    <span class="verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                </div>
                 <h3>DRIP PROXY</h3>
-                <p class="desc">Jalur proxy berkecepatan tinggi, stabil, dan aman untuk kebutuhan koneksi privat.</p>
-                <div class="price">Rp 120.000</div>
-                <button class="buy-btn" onclick="beliProduk('DRIP PROXY', '120000')">Beli via GoPay</button>
+                <div class="rating">★★★★★ <span class="rate-count">5 (38)</span></div>
+                <p class="p-desc">Drip Proxy Android The ultimate solution for Drip...</p>
+                <div class="tag-os">NO ROOT</div>
+                <div class="price-row">
+                    <span class="price-label">From</span>
+                    <span class="price-val">Rp9,600</span>
+                </div>
+                <div class="card-buttons">
+                    <button class="buy-btn" onclick="beliProduk('DRIP PROXY', 9600)">
+                        <i class="fa-solid fa-cart-shopping"></i> Buy
+                    </button>
+                </div>
             </div>
 
+            <!-- Produk 3 -->
             <div class="product-card">
-                <div class="badge-stock">Ready Stock</div>
+                <div class="product-header">
+                    <span class="p-icon">🍎</span>
+                    <span class="verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                </div>
                 <h3>DRIP WIRE</h3>
-                <p class="desc">Solusi enkripsi jaringan tingkat lanjut untuk mengamankan data dan privasi Anda.</p>
-                <div class="price">Rp 95.000</div>
-                <button class="buy-btn" onclick="beliProduk('DRIP WIRE', '95000')">Beli via GoPay</button>
+                <div class="rating">★★★★★ <span class="rate-count">5 (22)</span></div>
+                <p class="p-desc">Drip Wire android+ios The ultimate solution for Free Fir...</p>
+                <div class="tag-os">Android Mod Apk+ios</div>
+                <div class="price-row">
+                    <span class="price-label">From</span>
+                    <span class="price-val">Rp5,600</span>
+                </div>
+                <div class="card-buttons">
+                    <button class="buy-btn" onclick="beliProduk('DRIP WIRE', 5600)">
+                        <i class="fa-solid fa-cart-shopping"></i> Buy
+                    </button>
+                </div>
             </div>
 
+            <!-- Produk 4 -->
             <div class="product-card">
-                <div class="badge-stock">Ready Stock</div>
+                <div class="product-header">
+                    <span class="p-icon">🤖</span>
+                    <span class="verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                </div>
                 <h3>DRIP ROOT</h3>
-                <p class="desc">Akses utilitas sistem level tinggi untuk optimalisasi perangkat secara total.</p>
-                <div class="price">Rp 150.000</div>
-                <button class="buy-btn" onclick="beliProduk('DRIP ROOT', '150000')">Beli via GoPay</button>
+                <div class="rating">★★★★★ <span class="rate-count">5 (4)</span></div>
+                <p class="p-desc">Drip Client Mobile ROOT The ultimate solution for Free Fir...</p>
+                <div class="tag-os">MOBILE ROOT</div>
+                <div class="price-row">
+                    <span class="price-label">From</span>
+                    <span class="price-val">Rp9,600</span>
+                </div>
+                <div class="card-buttons">
+                    <button class="buy-btn" onclick="beliProduk('DRIP ROOT', 9600)">
+                        <i class="fa-solid fa-cart-shopping"></i> Buy
+                    </button>
+                </div>
             </div>
 
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 DRIP Store. All rights reserved.</p>
-    </footer>
+    <!-- MODAL AKUN / RIWAYAT PEMBELIAN -->
+    <div id="modalAkun" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Akun & Riwayat Pembelian</h3>
+                <button class="close-modal" onclick="tutupModalAkun()">&times;</button>
+            </div>
+            
+            <div id="formLoginArea">
+                <p class="modal-sub">Masukkan nama Anda untuk masuk / mendaftar:</p>
+                <input type="text" id="inputNamaUser" placeholder="Nama Lengkap Anda..." class="modal-input">
+                <input type="email" id="inputEmailUser" placeholder="Email Anda..." class="modal-input">
+                <button class="modal-submit-btn" onclick="simpanAkunUser()">Masuk / Simpan Akun</button>
+            </div>
+
+            <div id="infoUserArea" style="display: none;">
+                <div class="user-profile-card">
+                    <div class="u-avatar"><i class="fa-solid fa-user"></i></div>
+                    <div class="u-details">
+                        <h4 id="profileNama">Nama User</h4>
+                        <p id="profileEmail">email@domain.com</p>
+                    </div>
+                    <button class="logout-btn" onclick="logoutUser()">Keluar</button>
+                </div>
+
+                <h4 class="history-title"><i class="fa-solid fa-clock-rotate-left"></i> Riwayat Pembelian & Key Anda:</h4>
+                <div id="riwayatList" class="riwayat-container">
+                    <!-- List riwayat akan masuk otomatis di sini -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FLOATING SUPPORT BUTTON -->
+    <div class="float-support">
+        <i class="fa-solid fa-headset"></i>
+    </div>
 
     <script src="script.js"></script>
 </body>
