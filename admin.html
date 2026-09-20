@@ -17,6 +17,15 @@
 </head>
 <body>
 
+<script>
+  // Proteksi Password Admin
+  const pass = prompt("Masukkan Password Admin:");
+  if (pass !== "220230") {
+    alert("Password Salah! Anda tidak memiliki akses.");
+    window.location.href = "index.html";
+  }
+</script>
+
 <div class="card">
   <h2>⚡ Halaman Import Massal Key</h2>
 
@@ -30,9 +39,12 @@
 
   <label for="durasi">Pilih Durasi:</label>
   <select id="durasi">
+    <option value="6 Hours">6 Jam</option>
+    <option value="12 Hours">12 Jam</option>
     <option value="1 Day">1 Day</option>
     <option value="3 Day">3 Day</option>
     <option value="7 Day">7 Day</option>
+    <option value="15 Day">15 Day</option>
     <option value="30 Day">30 Day</option>
   </select>
 
