@@ -18,14 +18,34 @@
             <span class="store-title">DRIP STORE</span>
         </div>
         <div class="nav-right">
-            <button class="icon-btn" id="userBtn" onclick="bukaModalAkun()"><i class="fa-solid fa-user"></i></button>
+            <button class="icon-btn-user" id="userBtn" onclick="bukaModalAkun()">
+                <i class="fa-solid fa-user"></i> <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
+            </button>
             <button class="icon-btn"><i class="fa-solid fa-gear"></i></button>
         </div>
     </header>
 
-    <!-- BANNER / HEADER -->
-    <div class="banner">
-        <p>Official Products & 24/7 instant delivery support.</p>
+    <!-- HERO BANNER / SLIDER ALA REFERENSI -->
+    <div class="hero-slider-container">
+        <div class="hero-card">
+            <div class="hero-content">
+                <div class="hero-brand">
+                    <span class="h-icon">🛡️</span>
+                    <span class="h-title">Drip Client <i class="fa-solid fa-circle-check verified-badge"></i></span>
+                </div>
+                <p class="hero-desc">
+                    We have been operating in the market for years, offering mobile mods and emulators with high performance, stability, and real support. Quality, innovation, and trust all in one place.
+                </p>
+            </div>
+            <!-- Tombol Navigasi Slider Kiri Kanan -->
+            <button class="slider-arrow prev"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="slider-arrow next"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+        <!-- Titik Indikator Slider -->
+        <div class="slider-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+        </div>
     </div>
 
     <!-- KONTROL AKUN / STATUS USER -->
@@ -39,7 +59,7 @@
 
     <!-- DAFTAR PRODUK (KATALOG) -->
     <main class="container">
-        <h2 class="section-title">Our Products</h2>
+        <h2 class="section-title">Our <span style="color: #c084fc;">Products</span></h2>
         
         <div class="product-grid">
 
@@ -49,7 +69,7 @@
                     <span class="p-icon">🤖</span>
                     <span class="verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
                 </div>
-                <h3>DRIP APKMOD</h3>
+                <h3>DRIPMODAPK</h3>
                 <div class="rating">★★★★★ <span class="rate-count">5 (183)</span></div>
                 <p class="p-desc">Drip Client Mobile The ultimate solution for Free Fire...</p>
                 <div class="tag-os">ANDROID MODAPK NO ROOT</div>
