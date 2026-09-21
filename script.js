@@ -1,4 +1,4 @@
-// Database Harga Sesuai Rincian Kamu
+// Data Produk dan Daftar Durasi/Harga
 const DATA_PRODUK = {
   'DRIP APKMOD': [
     { durasi: '1Day', harga: 8500 },
@@ -25,63 +25,37 @@ const DATA_PRODUK = {
   ]
 };
 
-// Variable Global
+// Variable Global State
 let selectedHarga = 0;
 let selectedDurasi = '';
 let selectedProduk = '';
-
-// HERO BANNER SLIDER
-const heroBanners = [
-  "https://i.ibb.co.com/gZk0y1Mw/banner1.jpg",
-  "https://i.ibb.co.com/v4jVwCNy/banner2.jpg"
-];
-let currentSlide = 0;
-
-window.setSlide = function(index) {
-  currentSlide = index;
-  const imgEl = document.getElementById('heroImage');
-  const dots = document.querySelectorAll('.slider-dots .dot');
-  
-  if (imgEl) imgEl.src = heroBanners[currentSlide];
-  
-  dots.forEach((dot, idx) => {
-    if (idx === currentSlide) dot.classList.add('active');
-    else dot.classList.remove('active');
-  });
-};
-
-window.nextSlide = function() {
-  currentSlide = (currentSlide + 1) % heroBanners.length;
-  window.setSlide(currentSlide);
-};
-
-window.prevSlide = function() {
-  currentSlide = (currentSlide - 1 + heroBanners.length) % heroBanners.length;
-  window.setSlide(currentSlide);
-};
-
-// Auto slide banner setiap 5 detik
-setInterval(() => {
-  window.nextSlide();
-}, 5000);
+let isProcessing = false;
 
 // ==========================================
 // 1. FUNGSI UTAMA MODAL CHECKOUT
 // ==========================================
 
+// Buka Modal Checkout
 window.beliProduk = function (namaProduk) {
   selectedProduk = namaProduk;
 
+  // Set judul di modal
   const checkoutTitleEl = document.getElementById('checkoutTitle');
   if (checkoutTitleEl) {
     checkoutTitleEl.innerText = namaProduk;
   }
 
+  // Ambil daftar variasi harga berdasarkan produk
   const listVariasi = DATA_PRODUK[namaProduk] || [];
   const container = document.getElementById('voucherContainer');
 
-  if (container && listVariasi.length > 0) {
-    container.innerHTML = '';
+  if (container) {
+    container.innerHTML = ''; // Reset container
+
+    if (listVariasi.length === 0) {
+      container.innerHTML = '<p style="color:#888; font-size:12px;">Variasi produk tidak ditemukan.</p>';
+      return;
+    }
 
     listVariasi.forEach((item, index) => {
       const isFirst = index === 0;
@@ -99,18 +73,21 @@ window.beliProduk = function (namaProduk) {
             <div class="v-price">Rp${item.harga.toLocaleString('id-ID')}</div>
         </div>
       `;
-      container.innerHTML += itemHtml;
+      container.insertAdjacentHTML('beforeend', itemHtml);
     });
   }
 
+  // Update Tampilan Summary Harga
   updateSummaryHarga();
 
+  // Tampilkan Modal
   const modalCheckoutEl = document.getElementById('modalCheckout');
   if (modalCheckoutEl) {
     modalCheckoutEl.style.display = 'flex';
   }
 };
 
+// Tutup Modal Checkout
 window.tutupModalCheckout = function () {
   const modalCheckoutEl = document.getElementById('modalCheckout');
   if (modalCheckoutEl) {
@@ -118,11 +95,14 @@ window.tutupModalCheckout = function () {
   }
 };
 
+// Fungsi Klik Pilihan Durasi/Nominal
 window.pilihDurasi = function (element, durasi, harga) {
+  // Hapus kelas 'active' dari semua item
   document
-    .querySelectorAll('.voucher-item')
+    .querySelectorAll('#voucherContainer .voucher-item')
     .forEach((el) => el.classList.remove('active'));
 
+  // Tambah kelas 'active' ke item yang diklik
   if (element) {
     element.classList.add('active');
   }
@@ -146,28 +126,65 @@ function updateSummaryHarga() {
 // 2. PROSES PEMBELIAN & FIRESTORE INTEGRATION
 // ==========================================
 
+// Helper: Format nomor WhatsApp agar berawalan 62
+function formatPhoneNumber(phone) {
+  let cleaned = phone.replace(/\D/g, '');
+  if (cleaned.startsWith('0')) {
+    cleaned = '62' + cleaned.slice(1);
+  }
+  return cleaned;
+}
+
+// Proses Beli
 window.prosesBeliSekarang = async function () {
+  if (isProcessing) return; // Mencegah double-click
+
   const inputNamaEl = document.getElementById('inputNama');
   const inputWaEl = document.getElementById('inputWa');
+  const btnBuyNow = document.querySelector('.btn-buy-now');
 
   const nama = inputNamaEl ? inputNamaEl.value.trim() : '';
-  const wa = inputWaEl ? inputWaEl.value.trim() : '';
+  let wa = inputWaEl ? inputWaEl.value.trim() : '';
 
   if (!nama || !wa) {
     alert('Harap isi Nama Pembeli dan Nomor WhatsApp!');
     return;
   }
 
-  await prosesBeliKeyDenganDurasi(selectedDurasi, nama, wa);
+  wa = formatPhoneNumber(wa);
+
+  // Ubah UI Button ke Mode Loading
+  isProcessing = true;
+  const originalBtnText = btnBuyNow ? btnBuyNow.innerText : 'Beli Sekarang';
+  if (btnBuyNow) {
+    btnBuyNow.innerText = 'Memproses...';
+    btnBuyNow.style.opacity = '0.6';
+  }
+
+  try {
+    // Panggil fungsi penanganan stok Firestore
+    await prosesBeliKeyDenganDurasi(selectedDurasi, nama, wa);
+  } finally {
+    // Kembalikan UI Button
+    isProcessing = false;
+    if (btnBuyNow) {
+      btnBuyNow.innerText = originalBtnText;
+      btnBuyNow.style.opacity = '1';
+    }
+  }
 };
 
+// Fungsi mengambil Key dari Firestore berdasarkan produk & durasi
 async function prosesBeliKeyDenganDurasi(durasi, nama, wa) {
   try {
+    // Cek apakah Firebase Firestore di-load
     if (typeof db === 'undefined') {
+      console.warn('Firebase Firestore belum terinisialisasi. Beralih ke fallback WhatsApp.');
       kirimKeWhatsApp(nama, wa, null);
       return;
     }
 
+    // Ambil 1 key yang berstatus 'available'
     const snapshot = await db
       .collection('keys')
       .where('produk', '==', selectedProduk)
@@ -182,27 +199,34 @@ async function prosesBeliKeyDenganDurasi(durasi, nama, wa) {
       return;
     }
 
-    let keyData = null;
-    let docId = '';
-    snapshot.forEach((doc) => {
-      docId = doc.id;
-      keyData = doc.data();
+    let keyDoc = snapshot.docs[0];
+    let keyData = keyDoc.data();
+
+    // Jalankan Transaction untuk klaim aman agar tidak terjadi double-claim
+    await db.runTransaction(async (transaction) => {
+      const freshDoc = await transaction.get(keyDoc.ref);
+      if (!freshDoc.exists || freshDoc.data().status !== 'available') {
+        throw new Error('Key telah diambil oleh pengguna lain.');
+      }
+
+      transaction.update(keyDoc.ref, {
+        status: 'pending_payment',
+        pembeliNama: nama,
+        pembeliWa: wa,
+        tanggalPesan: firebase.firestore.FieldValue.serverTimestamp()
+      });
     });
 
-    await db.collection('keys').doc(docId).update({
-      status: 'pending_payment',
-      pembeliNama: nama,
-      pembeliWa: wa,
-      tanggalPesan: new Date(),
-    });
-
+    // Lanjutkan kirim rincian ke WhatsApp Admin
     kirimKeWhatsApp(nama, wa, keyData ? keyData.key : 'Tersedia');
   } catch (error) {
     console.error('Terjadi kesalahan Firestore:', error);
+    // Jika ada kegagalan transaksi, tetap alihkan ke WA agar user tetap terlayani
     kirimKeWhatsApp(nama, wa, null);
   }
 }
 
+// Helper untuk mengirim format pesanan ke WhatsApp
 function kirimKeWhatsApp(nama, wa, key) {
   const nomorAdmin = '62895603099950';
 
@@ -229,11 +253,12 @@ function kirimKeWhatsApp(nama, wa, key) {
   const urlWA = `https://wa.me/${nomorAdmin}?text=${encodeURIComponent(pesan)}`;
   window.open(urlWA, '_blank');
 
+  // Tutup modal setelah proses
   window.tutupModalCheckout();
 }
 
 // ==========================================
-// 3. FUNGSI MODAL AKUN
+// 3. FUNGSI MODAL AKUN & MODAL TAMBAHAN
 // ==========================================
 
 window.bukaModalAkun = function (tipe) {
@@ -272,7 +297,7 @@ window.simpanAkunUser = function () {
 };
 
 // ==========================================
-// 4. FLOATING COMMUNITY MENU (CS TOGGLE)
+// 4. FUNGSI FLOATING COMMUNITY MENU (CS TOGGLE)
 // ==========================================
 
 window.toggleCommunityMenu = function () {
