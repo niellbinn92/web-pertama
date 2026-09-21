@@ -4,13 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DRIP STORE - Premium Tools</title>
+    
+    <!-- FAVICON (LOGO DI TAB BROWSER) -->
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/prvs1zCc/75E7B634-777B-4969-AB14-9D394749B2D5.png">
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/prvs1zCc/75E7B634-777B-4969-AB14-9D394749B2D5.png">
+
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- NAVBAR ATAS WITH LOGO -->
+    <!-- ANIMASI MASUK (SPLASH SCREEN) -->
+    <div id="splashScreen" class="splash-screen">
+        <div class="splash-content">
+            <img src="https://i.postimg.cc/prvs1zCc/75E7B634-777B-4969-AB14-9D394749B2D5.png" alt="Logo Drip" class="splash-logo">
+            <h1 class="splash-title">DRIP CLIENT</h1>
+            <p class="splash-by">BY NIEL</p>
+            <div class="splash-loader"></div>
+        </div>
+    </div>
+
+    <!-- NAVBAR ATAS -->
     <header class="navbar">
         <div class="logo-area">
             <img src="https://i.postimg.cc/prvs1zCc/75E7B634-777B-4969-AB14-9D394749B2D5.png" alt="DRIP STORE Logo" class="store-logo-img">
@@ -43,7 +58,7 @@
         </div>
     </div>
 
-   <!-- KATALOG PRODUK (2 KOLOM PER BARIS) -->
+    <!-- KATALOG PRODUK -->
     <main class="container">
         <h2 class="section-title">Our <span style="color: #c084fc;">Products</span></h2>
         
@@ -58,7 +73,6 @@
                 <div class="p-status"><i class="fa-solid fa-circle-check"></i> Verified</div>
                 <div class="rating">★★★★★ <span class="rate-count">5 (183)</span></div>
                 
-                <!-- SLOT GAMBAR PRODUK 1 -->
                 <div class="product-img-box">
                     <img 
                         src="https://i.postimg.cc/MTfGrjHc/c26b1fbd-875d-4a3c-a9bb-c65500993a3e.jpg" 
@@ -92,7 +106,6 @@
                 <div class="p-status"><i class="fa-solid fa-circle-check"></i> Verified</div>
                 <div class="rating">★★★★★ <span class="rate-count">5 (38)</span></div>
                 
-                <!-- SLOT GAMBAR PRODUK 2 -->
                 <div class="product-img-box">
                     <img 
                         src="https://i.postimg.cc/xT2dt82p/IMG-9687.png" 
@@ -126,7 +139,6 @@
                 <div class="p-status"><i class="fa-solid fa-circle-check"></i> Verified</div>
                 <div class="rating">★★★★★ <span class="rate-count">5 (22)</span></div>
                 
-                <!-- SLOT GAMBAR PRODUK 3 -->
                 <div class="product-img-box">
                     <img 
                         src="https://i.postimg.cc/YS570D2Y/fa93066a-e0b8-4ef8-a8ea-7cb674880387.jpg" 
@@ -160,7 +172,6 @@
                 <div class="p-status"><i class="fa-solid fa-circle-check"></i> Verified</div>
                 <div class="rating">★★★★★ <span class="rate-count">5 (4)</span></div>
                 
-                <!-- SLOT GAMBAR PRODUK 4 -->
                 <div class="product-img-box">
                     <img 
                         src="https://i.postimg.cc/mkRGNcHh/IMG-9688.png" 
@@ -188,7 +199,7 @@
         </div>
     </main>
 
-    <!-- MODAL CHECKOUT FORM -->
+    <!-- MODAL CHECKOUT -->
     <div id="modalCheckout" class="modal-overlay" style="display: none;">
         <div class="checkout-card">
             <div class="checkout-header">
@@ -197,51 +208,31 @@
             </div>
 
             <div class="checkout-body">
-                <!-- STEP 1: PILIH NOMINAL VOUCHER -->
                 <div class="step-box">
-                    <div class="step-title">
-                        <span class="step-num">1</span> PILIH NOMINAL VOUCHER
-                    </div>
+                    <div class="step-title"><span class="step-num">1</span> PILIH NOMINAL VOUCHER</div>
                     <div class="voucher-grid">
                         <div class="voucher-item active" onclick="pilihDurasi(this, '1 Hari', 1760)">
-                            <div class="v-header">
-                                <span class="v-duration">1 Hari</span>
-                                <i class="fa-solid fa-circle-check v-check"></i>
-                            </div>
+                            <div class="v-header"><span class="v-duration">1 Hari</span><i class="fa-solid fa-circle-check v-check"></i></div>
                             <div class="v-price">Rp1.760</div>
                         </div>
-
                         <div class="voucher-item" onclick="pilihDurasi(this, '7 Hari', 18000)">
-                            <div class="v-header">
-                                <span class="v-duration">7 Hari</span>
-                                <i class="fa-solid fa-circle-check v-check"></i>
-                            </div>
+                            <div class="v-header"><span class="v-duration">7 Hari</span><i class="fa-solid fa-circle-check v-check"></i></div>
                             <div class="v-price">Rp18.000</div>
                         </div>
-
                         <div class="voucher-item" onclick="pilihDurasi(this, '10 Hari', 30000)">
-                            <div class="v-header">
-                                <span class="v-duration">10 Hari</span>
-                                <i class="fa-solid fa-circle-check v-check"></i>
-                            </div>
+                            <div class="v-header"><span class="v-duration">10 Hari</span><i class="fa-solid fa-circle-check v-check"></i></div>
                             <div class="v-price">Rp30.000</div>
                         </div>
-
                         <div class="voucher-item disabled">
-                            <div class="v-header">
-                                <span class="v-duration">30 Hari</span>
-                            </div>
+                            <div class="v-header"><span class="v-duration">30 Hari</span></div>
                             <div class="v-price">—</div>
                             <div class="v-sub status-habis">STOK HABIS</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- STEP 2: PILIH PEMBAYARAN -->
                 <div class="step-box">
-                    <div class="step-title">
-                        <span class="step-num">2</span> PILIH PEMBAYARAN
-                    </div>
+                    <div class="step-title"><span class="step-num">2</span> PILIH PEMBAYARAN</div>
                     <div class="payment-group">
                         <div class="payment-option selected">
                             <div class="pay-opt-text">
@@ -253,11 +244,8 @@
                     </div>
                 </div>
 
-                <!-- STEP 3: DATA PEMBELI -->
                 <div class="step-box">
-                    <div class="step-title">
-                        <span class="step-num">3</span> DATA PEMBELI
-                    </div>
+                    <div class="step-title"><span class="step-num">3</span> DATA PEMBELI</div>
                     <div class="form-group">
                         <label>Nama Pembeli *</label>
                         <input type="text" id="inputNama" placeholder="Masukkan nama..." class="co-input">
@@ -269,7 +257,6 @@
                     </div>
                 </div>
 
-                <!-- SUMMARY & BUY -->
                 <div class="summary-box">
                     <div class="promo-row">
                         <input type="text" placeholder="MASUKKAN KODE PROMO" class="promo-input">
@@ -289,7 +276,7 @@
         </div>
     </div>
 
-    <!-- MODAL AUTH LOGIN / DAFTAR -->
+    <!-- MODAL AUTH -->
     <div id="modalAkun" class="modal-overlay" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">
@@ -305,12 +292,30 @@
         </div>
     </div>
 
-    <!-- FLOATING SUPPORT BUTTON -->
-    <div class="float-support">
-        <i class="fa-solid fa-headset"></i>
+    <!-- TOMBOL FLOATING COMMUNITY -->
+    <div class="floating-community">
+        <a href="https://t.me/Niellstorez" target="_blank" class="float-btn btn-telegram">
+            <i class="fa-paper-plane fa-brands"></i>
+            <span>Telegram</span>
+        </a>
+        <a href="https://wa.me/message/WJ5IVCIPK4DBP1" target="_blank" class="float-btn btn-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>WhatsApp</span>
+        </a>
     </div>
 
-    <!-- SCRIPT FIREBASE & UTILS -->
+    <!-- SCRIPT TERTUTUP OTOMATIS SPLASH SCREEN -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const splash = document.getElementById('splashScreen');
+                if (splash) {
+                    splash.classList.add('splash-hidden');
+                }
+            }, 2500); // Tampil selama 2.5 detik lalu menghilang
+        });
+    </script>
+
     <script type="module" src="script.js"></script>
 
 </body>
