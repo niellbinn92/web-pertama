@@ -544,25 +544,65 @@ body {
     background: #a855f7;
 }
 
-/* FLOATING SUPPORT BUTTON & COMMUNITY */
+/* FLOATING SUPPORT BUTTON & COMMUNITY TOGGLE */
 .floating-community {
     position: fixed;
     bottom: 20px;
     right: 20px;
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     gap: 10px;
     z-index: 999;
+}
+
+/* Tombol Headset Utama (Bisa Diklik) */
+.main-float-btn {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a855f7, #6b21a8);
+    border: 2px solid #c084fc;
+    color: #ffffff;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main-float-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
+}
+
+/* Container Menu Tersembunyi */
+.float-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: all 0.3s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Class untuk Sembunyikan Menu */
+.float-menu.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(15px);
 }
 
 .float-btn {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    border-radius: 20px;
+    gap: 10px;
+    padding: 10px 18px;
+    border-radius: 25px;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     transition: transform 0.2s;
