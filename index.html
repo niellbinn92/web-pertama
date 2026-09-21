@@ -1,219 +1,120 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DRIP STORE - Premium Tools</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-
-    <!-- NAVBAR ATAS -->
-    <header class="navbar">
-        <div class="logo-area">
-            <div class="store-icon"><i class="fa-solid fa-store"></i></div>
-            <span class="store-title">DRIP STORE</span>
+<!-- MODAL CHECKOUT FORM (PERSIS GAMBAR) -->
+<div id="modalCheckout" class="modal-overlay" style="display: none;">
+    <div class="checkout-card">
+        <div class="checkout-header">
+            <h3 id="checkoutTitle">DRIP APKMOD</h3>
+            <button class="close-modal" onclick="tutupModalCheckout()">&times;</button>
         </div>
-        <!-- TOMBOL LOGIN & DAFTAR SESUAI FOTO KEDUAMU -->
-        <div class="nav-right">
-            <button class="auth-btn btn-login" onclick="bukaModalAkun('login')">Login</button>
-            <button class="auth-btn btn-daftar" onclick="bukaModalAkun('daftar')">Daftar</button>
-        </div>
-    </header>
 
-    <!-- HERO BANNER SLIDER -->
-    <div class="hero-slider-container">
-        <div class="hero-card">
-            <div class="hero-content">
-                <div class="hero-brand">
-                    <span class="h-icon">🛡️</span>
-                    <span class="h-title">Drip Client <i class="fa-solid fa-circle-check verified-badge"></i></span>
+        <div class="checkout-body">
+            <!-- STEP 1: PILIH NOMINAL VOUCHER -->
+            <div class="step-box">
+                <div class="step-title">
+                    <span class="step-num">1</span> PILIH NOMINAL VOUCHER
                 </div>
-                <p class="hero-desc">
-                    We have been operating in the market for years, offering mobile mods and emulators with high performance, stability, and real support. Quality, innovation, and trust all in one place.
-                </p>
-            </div>
-            <button class="slider-arrow prev"><i class="fa-solid fa-chevron-left"></i></button>
-            <button class="slider-arrow next"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-        <div class="slider-dots">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-        </div>
-    </div>
-
-    <!-- DAFTAR PRODUK (KATALOG) -->
-    <main class="container">
-        <h2 class="section-title">Our <span style="color: #c084fc;">Products</span></h2>
-        
-        <div class="product-grid">
-
-            <div class="product-card">
-                <div class="product-header">
-                    <span class="p-icon">🤖</span>
-                    <span class="verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
-                </div>
-                <h3>DRIP APKMOD</h3>
-                <div class="rating">★★★★★ <span class="rate-count">5 (183)</span></div>
-                <p class="p-desc">Drip Client Mobile The ultimate solution for Free Fire...</p>
-                <div class="tag-os">ANDROID MODAPK NO ROOT</div>
-                <div class="price-row">
-                    <span class="price-label">From</span>
-                    <span class="price-val">Rp9,600</span>
-                </div>
-                <div class="card-buttons">
-                    <button class="buy-btn" onclick="beliProduk('DRIP APKMOD')">
-                        <i class="fa-solid fa-cart-shopping"></i> Buy
-                    </button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-header">
-                    <span class="p-icon">🤖</span>
-                    <span class="verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
-                </div>
-                <h3>DRIP PROXY</h3>
-                <div class="rating">★★★★★ <span class="rate-count">5 (38)</span></div>
-                <p class="p-desc">Drip Proxy Android The ultimate solution for Drip...</p>
-                <div class="tag-os">NO ROOT</div>
-                <div class="price-row">
-                    <span class="price-label">From</span>
-                    <span class="price-val">Rp9,600</span>
-                </div>
-                <div class="card-buttons">
-                    <button class="buy-btn" onclick="beliProduk('DRIP PROXY')">
-                        <i class="fa-solid fa-cart-shopping"></i> Buy
-                    </button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-header">
-                    <span class="p-icon">🍎</span>
-                    <span class="verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
-                </div>
-                <h3>DRIP WIRE</h3>
-                <div class="rating">★★★★★ <span class="rate-count">5 (22)</span></div>
-                <p class="p-desc">Drip Wire android+ios The ultimate solution for Free Fir...</p>
-                <div class="tag-os">Android Mod Apk+ios</div>
-                <div class="price-row">
-                    <span class="price-label">From</span>
-                    <span class="price-val">Rp5,600</span>
-                </div>
-                <div class="card-buttons">
-                    <button class="buy-btn" onclick="beliProduk('DRIP WIRE')">
-                        <i class="fa-solid fa-cart-shopping"></i> Buy
-                    </button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-header">
-                    <span class="p-icon">🤖</span>
-                    <span class="verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
-                </div>
-                <h3>DRIP ROOT</h3>
-                <div class="rating">★★★★★ <span class="rate-count">5 (4)</span></div>
-                <p class="p-desc">Drip Client Mobile ROOT The ultimate solution for Free Fir...</p>
-                <div class="tag-os">MOBILE ROOT</div>
-                <div class="price-row">
-                    <span class="price-label">From</span>
-                    <span class="price-val">Rp9,600</span>
-                </div>
-                <div class="card-buttons">
-                    <button class="buy-btn" onclick="beliProduk('DRIP ROOT')">
-                        <i class="fa-solid fa-cart-shopping"></i> Buy
-                    </button>
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-    <!-- MODAL PILIH DURASI -->
-    <div id="modalDurasi" class="modal-overlay" style="display: none;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="judulModalDurasi">Pilih Durasi Key</h3>
-                <button class="close-modal" onclick="tutupModalDurasi()">&times;</button>
-            </div>
-            <p class="modal-sub">Silakan pilih durasi lisensi yang kamu butuhkan:</p>
-            <div class="durasi-options-grid">
-                <button class="btn-durasi" onclick="prosesBeliKeyDenganDurasi('6 Jam')">⚡ 6 Jam</button>
-                <button class="btn-durasi" onclick="prosesBeliKeyDenganDurasi('12 Jam')">⚡ 12 Jam</button>
-                <button class="btn-durasi" onclick="prosesBeliKeyDenganDurasi('1 Day')">📅 1 Day</button>
-                <button class="btn-durasi" onclick="prosesBeliKeyDenganDurasi('3 Day')">📅 3 Day</button>
-                <button class="btn-durasi" onclick="prosesBeliKeyDenganDurasi('7 Day')">📅 7 Day</button>
-                <button class="btn-durasi" onclick="prosesBeliKeyDenganDurasi('15 Day')">📅 15 Day</button>
-                <button class="btn-durasi" onclick="prosesBeliKeyDenganDurasi('30 Day')">🔥 30 Day</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL AKUN / LOGIN / DAFTAR -->
-    <div id="modalAkun" class="modal-overlay" style="display: none;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modalAuthTitle">Login Akun</h3>
-                <button class="close-modal" onclick="tutupModalAkun()">&times;</button>
-            </div>
-            
-            <div id="formLoginArea">
-                <input type="text" id="inputNamaUser" placeholder="Nama Lengkap..." class="modal-input">
-                <input type="email" id="inputEmailUser" placeholder="Email Anda..." class="modal-input">
-                <button class="modal-submit-btn" onclick="simpanAkunUser()">Masuk / Simpan Akun</button>
-            </div>
-
-            <div id="infoUserArea" style="display: none;">
-                <div class="user-profile-card">
-                    <div class="u-avatar"><i class="fa-solid fa-user"></i></div>
-                    <div class="u-details">
-                        <h4 id="profileNama">Nama User</h4>
-                        <p id="profileEmail">email@domain.com</p>
+                <div class="voucher-grid">
+                    <div class="voucher-item active" onclick="pilihDurasi(this, '1 Hari', 6000)">
+                        <div class="v-header">
+                            <span class="v-duration">1 Hari</span>
+                            <i class="fa-solid fa-circle-check v-check"></i>
+                        </div>
+                        <div class="v-price">Rp6.000</div>
+                        <div class="v-sub">HARGA RESELLER</div>
                     </div>
-                    <button class="logout-btn" onclick="logoutUser()">Keluar</button>
-                </div>
 
-                <h4 class="history-title"><i class="fa-solid fa-clock-rotate-left"></i> Riwayat Pembelian & Key Anda:</h4>
-                <div id="riwayatList" class="riwayat-container"></div>
+                    <div class="voucher-item" onclick="pilihDurasi(this, '7 Hari', 18000)">
+                        <div class="v-header">
+                            <span class="v-duration">7 Hari</span>
+                            <i class="fa-solid fa-circle-check v-check"></i>
+                        </div>
+                        <div class="v-price">Rp18.000</div>
+                        <div class="v-sub">HARGA RESELLER</div>
+                    </div>
+
+                    <div class="voucher-item" onclick="pilihDurasi(this, '10 Hari', 30000)">
+                        <div class="v-header">
+                            <span class="v-duration">10 Hari</span>
+                            <i class="fa-solid fa-circle-check v-check"></i>
+                        </div>
+                        <div class="v-price">Rp30.000</div>
+                        <div class="v-sub">HARGA RESELLER</div>
+                    </div>
+
+                    <div class="voucher-item disabled">
+                        <div class="v-header">
+                            <span class="v-duration">30 Hari</span>
+                        </div>
+                        <div class="v-price">—</div>
+                        <div class="v-sub status-habis">STOK HABIS</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2: PILIH PEMBAYARAN -->
+            <div class="step-box">
+                <div class="step-title">
+                    <span class="step-num">2</span> PILIH PEMBAYARAN
+                </div>
+                <div class="payment-group">
+                    <div class="payment-header">
+                        <i class="fa-solid fa-bolt pay-icon"></i>
+                        <div class="pay-info">
+                            <div class="pay-name">QRIS (All Payment)</div>
+                            <div class="pay-desc">Gopay, OVO, Dana, LinkAja, BCA, dll</div>
+                        </div>
+                    </div>
+                    <div class="payment-option selected">
+                        <div class="pay-opt-text">
+                            <strong>QRIS Instan</strong> — via AutoGoPay
+                            <span class="free-badge">Biaya Admin: GRATIS</span>
+                        </div>
+                        <i class="fa-solid fa-circle-check pay-check"></i>
+                    </div>
+
+                    <div class="payment-option disabled">
+                        <div class="pay-opt-text">
+                            <strong>Saldo Wallet</strong>
+                            <span class="badge-wallet">GRATIS BIAYA</span>
+                        </div>
+                        <div class="wallet-info">
+                            <span>Saldo tersedia</span> <span style="color:#ff4d4d;">Rp0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3: DATA PEMBELI -->
+            <div class="step-box">
+                <div class="step-title">
+                    <span class="step-num">3</span> DATA PEMBELI
+                </div>
+                <div class="form-group">
+                    <label>Nama Pembeli *</label>
+                    <input type="text" id="inputNama" placeholder="Masukkan nama..." class="co-input">
+                </div>
+                <div class="form-group">
+                    <label>Nomor WhatsApp *</label>
+                    <input type="number" id="inputWa" placeholder="08xxxxxxxxxx" class="co-input">
+                    <small class="input-note">Nomor ini digunakan sebagai identitas pesanan Anda.</small>
+                </div>
+            </div>
+
+            <!-- RINGKASAN & TOTAL -->
+            <div class="summary-box">
+                <div class="promo-row">
+                    <input type="text" placeholder="MASUKKAN KODE PROMO" class="promo-input">
+                    <button class="btn-promo">Terapkan</button>
+                </div>
+                <div class="price-summary">
+                    <div class="sum-row"><span>Harga Produk</span> <span id="summaryHarga">Rp6.000</span></div>
+                    <div class="sum-row"><span>Biaya Admin</span> <span style="color:#00f2fe;">Gratis</span></div>
+                    <div class="sum-row total-row">
+                        <span>TOTAL BAYAR</span>
+                        <span id="summaryTotal" class="total-price">Rp6.000</span>
+                    </div>
+                </div>
+                <button class="btn-buy-now" onclick="prosesBeliSekarang()">Beli Sekarang</button>
             </div>
         </div>
     </div>
-
-    <!-- FLOATING SUPPORT BUTTON -->
-    <div class="float-support">
-        <i class="fa-solid fa-headset"></i>
-    </div>
-
-    <!-- SCRIPT FIREBASE & UTILS -->
-    <script type="module" src="script.js"></script>
-
-    <!-- SCRIPT PROTEKSI ANTI KLIK KANAN, F12, & DEBUGGER LOOP -->
-    <script>
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            alert('Fuck Hacker - Right Click Blocked!');
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'F12' || 
-               (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j')) || 
-               (e.ctrlKey && (e.key === 'u' || e.key === 'U'))) {
-                e.preventDefault();
-                alert('Fuck Hacker - Right Click Blocked!');
-            }
-        });
-
-        setInterval(function() {
-            const start = performance.now();
-            debugger;
-            if (performance.now() - start > 100) {
-                document.body.innerHTML = "<h1 style='color:red;text-align:center;padding-top:20%;font-family:sans-serif;'>AKSES DITOLAK! TUTUP INSPECT ELEMENT!</h1>";
-            }
-        }, 100);
-    </script>
-</body>
-</html>
+</div>
