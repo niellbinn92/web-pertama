@@ -1,499 +1,56 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', sans-serif;
-}
-
-body {
-    background-color: #0c0918;
-    color: #f3f4f6;
-    min-height: 100vh;
-    padding-bottom: 50px;
-}
-
-/* NAVBAR */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 16px;
-    background: #141026;
-    border-bottom: 1px solid #231b3b;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.logo-area {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.store-icon {
-    background: #231b3b;
-    color: #a855f7;
-    width: 34px;
-    height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    font-size: 14px;
-}
-
-.store-title {
-    font-weight: 700;
-    font-size: 16px;
-    letter-spacing: 0.5px;
-    color: #ffffff;
-}
-
-.nav-right {
-    display: flex;
-    gap: 8px;
-}
-
-.icon-btn {
-    background: #1e1636;
-    border: 1px solid #2d2250;
-    color: #fff;
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-}
-
-.icon-btn-user {
-    background: #a855f7;
-    border: none;
-    color: #fff;
-    padding: 6px 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-}
-
-/* HERO BANNER SLIDER */
-.hero-slider-container {
-    padding: 14px 16px;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.hero-card {
-    background: linear-gradient(135deg, #24133b 0%, #120922 100%);
-    border: 1px solid #3d2b63;
-    border-radius: 16px;
-    padding: 24px 20px;
-    position: relative;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-}
-
-.hero-brand {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 12px;
-}
-
-.h-icon {
-    font-size: 18px;
-}
-
-.h-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.verified-badge {
-    color: #3b82f6;
-    font-size: 14px;
-}
-
-.hero-desc {
-    font-size: 12px;
-    color: #d1d5db;
-    line-height: 1.5;
-}
-
-.slider-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.08);
-    border: none;
-    color: #fff;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 11px;
-}
-
-.slider-arrow.prev { left: 8px; }
-.slider-arrow.next { right: 8px; }
-
-.slider-dots {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    margin-top: 10px;
-}
-
-.dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 4px;
-    background: #372a56;
-    transition: width 0.3s;
-}
-
-.dot.active {
-    width: 22px;
-    background: #a855f7;
-}
-
-/* USER BAR */
-.user-bar {
-    background: #17112c;
-    margin: 12px 16px;
-    padding: 12px 16px;
-    border-radius: 12px;
-    border: 1px solid #2d2250;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.user-info-text h4 {
-    font-size: 14px;
-    color: #fff;
-}
-
-.user-info-text small {
-    font-size: 11px;
-    color: #9ca3af;
-}
-
-.account-action-btn {
-    background: #a855f7;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 12px;
+/* TAMPILAN TOMBOL LOGIN & DAFTAR */
+.auth-btn {
+    padding: 8px 18px;
+    border-radius: 20px;
     font-weight: 600;
+    font-size: 14px;
     cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
 }
 
-/* CONTAINER & GRID */
-.container {
-    padding: 0 16px;
-    max-width: 600px;
-    margin: 0 auto;
+.btn-login {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #4a4a5a;
+    margin-right: 8px;
 }
 
-.section-title {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 12px;
-    color: #e5e7eb;
+.btn-login:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
 
-.product-grid {
+.btn-daftar {
+    background: #00bcd4; /* Warna Cyan persis gambar kedua */
+    color: #000000;
+}
+
+.btn-daftar:hover {
+    background: #00acc1;
+    transform: translateY(-1px);
+}
+
+/* MODAL PILIH DURASI */
+.durasi-options-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
+    margin-top: 15px;
 }
 
-@media(max-width: 480px) {
-    .product-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* PRODUCT CARD */
-.product-card {
-    background: #141026;
-    border: 1px solid #231b3b;
-    border-radius: 12px;
+.btn-durasi {
     padding: 12px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.product-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-.p-icon {
-    font-size: 16px;
-}
-
-.verified {
-    font-size: 10px;
-    color: #34d399;
-    background: rgba(52, 211, 153, 0.1);
-    padding: 2px 6px;
-    border-radius: 4px;
-}
-
-.product-card h3 {
-    font-size: 13px;
-    font-weight: 600;
+    background: #2a2a3c;
+    border: 1px solid #3f3f5a;
     color: #fff;
-    margin-bottom: 4px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.rating {
-    font-size: 10px;
-    color: #fbbf24;
-    margin-bottom: 6px;
-}
-
-.rate-count {
-    color: #9ca3af;
-}
-
-.p-desc {
-    font-size: 11px;
-    color: #9ca3af;
-    margin-bottom: 8px;
-    line-height: 1.3;
-    height: 28px;
-    overflow: hidden;
-}
-
-.tag-os {
-    background: #1f1638;
-    color: #c084fc;
-    font-size: 9px;
-    font-weight: 600;
-    padding: 3px 6px;
-    border-radius: 4px;
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
-.price-row {
-    margin-bottom: 10px;
-}
-
-.price-label {
-    font-size: 10px;
-    color: #9ca3af;
-}
-
-.price-val {
-    font-size: 14px;
-    font-weight: 700;
-    color: #34d399;
-    display: block;
-}
-
-.buy-btn {
-    background: #a855f7;
-    color: white;
-    border: none;
-    width: 100%;
-    padding: 8px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.buy-btn:hover {
-    background: #9333ea;
-}
-
-/* MODAL */
-.modal-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    padding: 16px;
-}
-
-.modal-content {
-    background: #141026;
-    border: 1px solid #2d2250;
-    width: 100%;
-    max-width: 400px;
-    border-radius: 16px;
-    padding: 20px;
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-}
-
-.modal-header h3 {
-    font-size: 16px;
-    color: #fff;
-}
-
-.close-modal {
-    background: none;
-    border: none;
-    color: #9ca3af;
-    font-size: 22px;
-    cursor: pointer;
-}
-
-.modal-sub {
-    font-size: 12px;
-    color: #9ca3af;
-    margin-bottom: 12px;
-}
-
-.modal-input {
-    width: 100%;
-    background: #1f1638;
-    border: 1px solid #3b2d6b;
-    padding: 10px 12px;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 13px;
-    margin-bottom: 12px;
-    outline: none;
-}
-
-.modal-submit-btn {
-    width: 100%;
-    background: #a855f7;
-    color: white;
-    border: none;
-    padding: 10px;
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
+    transition: 0.2s;
 }
 
-.user-profile-card {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: #1c1535;
-    padding: 12px;
-    border-radius: 10px;
-    margin-bottom: 16px;
-}
-
-.u-avatar {
-    background: #a855f7;
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: white;
-}
-
-.u-details h4 {
-    font-size: 13px;
-    color: #fff;
-}
-
-.u-details p {
-    font-size: 11px;
-    color: #9ca3af;
-}
-
-.logout-btn {
-    margin-left: auto;
-    background: rgba(239, 68, 68, 0.2);
-    color: #f87171;
-    border: none;
-    padding: 6px 10px;
-    border-radius: 6px;
-    font-size: 11px;
-    cursor: pointer;
-}
-
-.history-title {
-    font-size: 13px;
-    color: #d8b4fe;
-    margin-bottom: 10px;
-}
-
-.riwayat-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.riwayat-item {
-    background: #1a1330;
-    border: 1px solid #2d2250;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 12px;
-}
-
-.riwayat-item .r-top {
-    display: flex;
-    justify-content: space-between;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 4px;
-}
-
-.riwayat-item .r-key {
-    background: #110c22;
-    color: #34d399;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-family: monospace;
-    font-size: 11px;
-    margin-top: 6px;
-    display: block;
-}
-
-.float-support {
-    position: fixed;
-    bottom: 20px; right: 20px;
-    background: #a855f7;
-    color: white;
-    width: 45px; height: 45px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4);
-    cursor: pointer;
+.btn-durasi:hover {
+    background: #c084fc;
+    color: #000;
+    border-color: #c084fc;
 }
