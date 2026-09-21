@@ -37,20 +37,26 @@
         </div>
     </header>
 
-    <!-- HERO BANNER SLIDER (DENGAN GAMBAR HERO) -->
-    <div class="hero-slider-container">
-        <div class="hero-card hero-image-card">
-            <!-- Gambar Hero Slider 1 & 2 dari ImgBB -->
-            <img id="heroImage" src="https://i.ibb.co.com/gZk0y1Mw/banner1.jpg" alt="Hero Banner Drip" class="hero-banner-img">
-
-            <button class="slider-arrow prev" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
-            <button class="slider-arrow next" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
+    <!-- HERO BANNER SLIDER -->
+    <section class="hero-slider-container">
+        <div class="hero-card">
+            <div class="hero-content">
+                <div class="hero-brand">
+                    <span class="h-icon">🛡️</span>
+                    <span class="h-title">Drip Client <i class="fa-solid fa-circle-check verified-badge"></i></span>
+                </div>
+                <p class="hero-desc">
+                    We have been operating in the market for years, offering mobile mods and emulators with high performance, stability, and real support. Quality, innovation, and trust all in one place.
+                </p>
+            </div>
+            <button class="slider-arrow prev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="slider-arrow next" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
         <div class="slider-dots">
-            <span class="dot active" onclick="setSlide(0)"></span>
-            <span class="dot" onclick="setSlide(1)"></span>
+            <span class="dot active"></span>
+            <span class="dot"></span>
         </div>
-    </div>
+    </section>
 
     <!-- KATALOG PRODUK -->
     <main class="container">
@@ -62,7 +68,7 @@
             <div class="product-card">
                 <div class="p-top-info">
                     <span class="p-icon"><i class="fa-brands fa-android"></i></span>
-                    <span class="p-title-text">DRIP APKMOD</span>
+                    <span class="p-title-text">DRIP MOD APK</span>
                 </div>
                 <div class="p-status"><i class="fa-solid fa-circle-check"></i> Verified</div>
                 <div class="rating">★★★★★ <span class="rate-count">5 (183)</span></div>
@@ -80,7 +86,7 @@
                 
                 <div class="card-buttons">
                     <button class="btn-demo"><i class="fa-solid fa-play"></i> Demo</button>
-                    <button class="btn-buy" onclick="beliProduk('DRIP APKMOD')"><i class="fa-solid fa-cart-shopping"></i> Buy</button>
+                    <button class="btn-buy" onclick="beliProduk('DRIP MOD APK')"><i class="fa-solid fa-cart-shopping"></i> Buy</button>
                 </div>
             </div>
 
@@ -195,12 +201,12 @@
                 <div class="step-box">
                     <div class="step-title"><span class="step-num">3</span> DATA PEMBELI</div>
                     <div class="form-group">
-                        <label>Nama Pembeli *</label>
+                        <label for="inputNama">Nama Pembeli *</label>
                         <input type="text" id="inputNama" placeholder="Masukkan nama..." class="co-input">
                     </div>
                     <div class="form-group">
-                        <label>Nomor WhatsApp *</label>
-                        <input type="number" id="inputWa" placeholder="08xxxxxxxxxx" class="co-input">
+                        <label for="inputWa">Nomor WhatsApp *</label>
+                        <input type="tel" id="inputWa" placeholder="08xxxxxxxxxx" class="co-input">
                         <small class="input-note">Nomor ini digunakan sebagai identitas pesanan Anda.</small>
                     </div>
                 </div>
@@ -240,7 +246,7 @@
         </div>
     </div>
 
-    <!-- TOMBOL FLOATING COMMUNITY (MENU CS TOGGLE) -->
+    <!-- TOMBOL FLOATING COMMUNITY -->
     <div class="floating-community">
         <div id="floatMenu" class="float-menu hidden">
             <a href="https://t.me/Niellstorez" target="_blank" class="float-btn btn-telegram">
@@ -253,12 +259,12 @@
             </a>
         </div>
 
-        <button class="main-float-btn" onclick="toggleCommunityMenu()">
+        <button class="main-float-btn" onclick="toggleCommunityMenu()" aria-label="Bantuan/Komunitas">
             <i class="fa-solid fa-headset"></i>
         </button>
     </div>
 
-    <!-- SPLASH SCREEN TIMER -->
+    <!-- SCRIPT SPLASH SCREEN -->
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
