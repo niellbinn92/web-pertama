@@ -1,4 +1,4 @@
-// Data Produk dan Daftar Durasi/Harga
+// Database Harga Sesuai Rincian Kamu
 const DATA_PRODUK = {
   'DRIP APKMOD': [
     { durasi: '1Day', harga: 8500 },
@@ -30,26 +30,58 @@ let selectedHarga = 0;
 let selectedDurasi = '';
 let selectedProduk = '';
 
+// HERO BANNER SLIDER
+const heroBanners = [
+  "https://i.ibb.co.com/gZk0y1Mw/banner1.jpg",
+  "https://i.ibb.co.com/v4jVwCNy/banner2.jpg"
+];
+let currentSlide = 0;
+
+window.setSlide = function(index) {
+  currentSlide = index;
+  const imgEl = document.getElementById('heroImage');
+  const dots = document.querySelectorAll('.slider-dots .dot');
+  
+  if (imgEl) imgEl.src = heroBanners[currentSlide];
+  
+  dots.forEach((dot, idx) => {
+    if (idx === currentSlide) dot.classList.add('active');
+    else dot.classList.remove('active');
+  });
+};
+
+window.nextSlide = function() {
+  currentSlide = (currentSlide + 1) % heroBanners.length;
+  window.setSlide(currentSlide);
+};
+
+window.prevSlide = function() {
+  currentSlide = (currentSlide - 1 + heroBanners.length) % heroBanners.length;
+  window.setSlide(currentSlide);
+};
+
+// Auto slide banner setiap 5 detik
+setInterval(() => {
+  window.nextSlide();
+}, 5000);
+
 // ==========================================
 // 1. FUNGSI UTAMA MODAL CHECKOUT
 // ==========================================
 
-// Buka Modal Checkout
 window.beliProduk = function (namaProduk) {
   selectedProduk = namaProduk;
 
-  // Set judul di modal
   const checkoutTitleEl = document.getElementById('checkoutTitle');
   if (checkoutTitleEl) {
     checkoutTitleEl.innerText = namaProduk;
   }
 
-  // Ambil daftar variasi harga berdasarkan produk yang dipilih
   const listVariasi = DATA_PRODUK[namaProduk] || [];
   const container = document.getElementById('voucherContainer');
 
   if (container && listVariasi.length > 0) {
-    container.innerHTML = ''; // Kosongkan elemen lama
+    container.innerHTML = '';
 
     listVariasi.forEach((item, index) => {
       const isFirst = index === 0;
@@ -71,17 +103,14 @@ window.beliProduk = function (namaProduk) {
     });
   }
 
-  // Update Tampilan Summary Harga
   updateSummaryHarga();
 
-  // Tampilkan Modal
   const modalCheckoutEl = document.getElementById('modalCheckout');
   if (modalCheckoutEl) {
     modalCheckoutEl.style.display = 'flex';
   }
 };
 
-// Tutup Modal Checkout
 window.tutupModalCheckout = function () {
   const modalCheckoutEl = document.getElementById('modalCheckout');
   if (modalCheckoutEl) {
@@ -89,14 +118,11 @@ window.tutupModalCheckout = function () {
   }
 };
 
-// Fungsi Klik Pilihan Durasi/Nominal
 window.pilihDurasi = function (element, durasi, harga) {
-  // Hapus kelas 'active' dari semua item
   document
     .querySelectorAll('.voucher-item')
     .forEach((el) => el.classList.remove('active'));
 
-  // Tambah kelas 'active' ke item yang diklik
   if (element) {
     element.classList.add('active');
   }
@@ -120,7 +146,6 @@ function updateSummaryHarga() {
 // 2. PROSES PEMBELIAN & FIRESTORE INTEGRATION
 // ==========================================
 
-// Proses Beli
 window.prosesBeliSekarang = async function () {
   const inputNamaEl = document.getElementById('inputNama');
   const inputWaEl = document.getElementById('inputWa');
@@ -133,22 +158,16 @@ window.prosesBeliSekarang = async function () {
     return;
   }
 
-  // Panggil fungsi penanganan stok Firestore
   await prosesBeliKeyDenganDurasi(selectedDurasi, nama, wa);
 };
 
-// Fungsi mengambil Key dari Firestore berdasarkan produk & durasi
 async function prosesBeliKeyDenganDurasi(durasi, nama, wa) {
   try {
-    // Pastikan Firebase SDK Firestore sudah di-load di HTML
     if (typeof db === 'undefined') {
-      console.warn('Firebase Firestore belum terinisialisasi.');
-      // Kirim pesan WhatsApp fallback jika Firebase tidak terhubung
       kirimKeWhatsApp(nama, wa, null);
       return;
     }
 
-    // Query Firestore: Mengambil key yang masih tersedia ('available')
     const snapshot = await db
       .collection('keys')
       .where('produk', '==', selectedProduk)
@@ -158,16 +177,11 @@ async function prosesBeliKeyDenganDurasi(durasi, nama, wa) {
       .get();
 
     if (snapshot.empty) {
-      alert(
-        `Stok key untuk ${selectedProduk} (${durasi}) sedang habis. Silakan hubungi admin!`
-      );
-
-      // Tetap alihkan ke WhatsApp jika ingin admin cek manual
+      alert(`Stok key untuk ${selectedProduk} (${durasi}) sedang habis. Silakan hubungi admin!`);
       kirimKeWhatsApp(nama, wa, 'STOK_HABIS');
       return;
     }
 
-    // Ambil data key
     let keyData = null;
     let docId = '';
     snapshot.forEach((doc) => {
@@ -175,7 +189,6 @@ async function prosesBeliKeyDenganDurasi(durasi, nama, wa) {
       keyData = doc.data();
     });
 
-    // Tandai key sebagai dibeli
     await db.collection('keys').doc(docId).update({
       status: 'pending_payment',
       pembeliNama: nama,
@@ -183,16 +196,13 @@ async function prosesBeliKeyDenganDurasi(durasi, nama, wa) {
       tanggalPesan: new Date(),
     });
 
-    // Lanjutkan kirim rincian ke WhatsApp Admin
     kirimKeWhatsApp(nama, wa, keyData ? keyData.key : 'Tersedia');
   } catch (error) {
     console.error('Terjadi kesalahan Firestore:', error);
-    // Jika ada error Firestore, tetap lanjutkan alur ke WhatsApp agar transaksi tidak batal
     kirimKeWhatsApp(nama, wa, null);
   }
 }
 
-// Fungsi Helper untuk mengirim format pesanan ke WhatsApp
 function kirimKeWhatsApp(nama, wa, key) {
   const nomorAdmin = '62895603099950';
 
@@ -219,12 +229,11 @@ function kirimKeWhatsApp(nama, wa, key) {
   const urlWA = `https://wa.me/${nomorAdmin}?text=${encodeURIComponent(pesan)}`;
   window.open(urlWA, '_blank');
 
-  // Tutup modal setelah proses
   window.tutupModalCheckout();
 }
 
 // ==========================================
-// 3. FUNGSI MODAL AKUN & MODAL TAMBAHAN
+// 3. FUNGSI MODAL AKUN
 // ==========================================
 
 window.bukaModalAkun = function (tipe) {
@@ -263,7 +272,7 @@ window.simpanAkunUser = function () {
 };
 
 // ==========================================
-// 4. FUNGSI FLOATING COMMUNITY MENU (CS TOGGLE)
+// 4. FLOATING COMMUNITY MENU (CS TOGGLE)
 // ==========================================
 
 window.toggleCommunityMenu = function () {
