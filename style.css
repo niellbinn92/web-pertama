@@ -1,4 +1,3 @@
-/* RESET & BASE STYLES */
 * {
     margin: 0;
     padding: 0;
@@ -7,10 +6,67 @@
 }
 
 body {
-    background-color: #0b0c10;
+    background-color: #0d0f17;
     color: #ffffff;
-    min-height: 100vh;
     padding-bottom: 50px;
+}
+
+/* SPLASH SCREEN */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #090a10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.splash-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.splash-content {
+    text-align: center;
+}
+
+.splash-logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin-bottom: 12px;
+}
+
+.splash-title {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.splash-by {
+    font-size: 12px;
+    color: #c084fc;
+    margin-bottom: 20px;
+}
+
+.splash-loader {
+    width: 35px;
+    height: 35px;
+    border: 3px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+    border-top-color: #c084fc;
+    animation: spin 1s infinite linear;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* NAVBAR */
@@ -18,12 +74,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 20px;
-    background: #121318;
-    border-bottom: 1px solid #1f2128;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    padding: 15px 25px;
+    background: #141724;
+    border-bottom: 1px solid #232738;
 }
 
 .logo-area {
@@ -32,46 +85,36 @@ body {
     gap: 10px;
 }
 
-/* LOGO GAMBAR KUSTOM DARI POSTIMG */
 .store-logo-img {
     width: 36px;
     height: 36px;
-    border-radius: 10px;
-    object-fit: cover;
-    display: block;
+    border-radius: 50%;
 }
 
 .store-title {
-    font-weight: 800;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: 700;
     letter-spacing: 0.5px;
-    color: #ffffff;
 }
 
 .nav-right {
     display: flex;
-    align-items: center;
+    gap: 10px;
 }
 
 .auth-btn {
-    padding: 6px 14px;
-    border-radius: 20px;
+    padding: 8px 16px;
+    border-radius: 8px;
     font-weight: 600;
     font-size: 13px;
     cursor: pointer;
-    transition: all 0.2s ease;
     border: none;
 }
 
 .btn-login {
     background: transparent;
     color: #ffffff;
-    border: 1px solid #3f4255;
-    margin-right: 6px;
-}
-
-.btn-login:hover {
-    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #3b82f6;
 }
 
 .btn-daftar {
@@ -79,314 +122,252 @@ body {
     color: #000000;
 }
 
-.btn-daftar:hover {
-    background: #a855f7;
-}
-
-/* HERO SLIDER */
+/* HERO SLIDER (GAMBAR) */
 .hero-slider-container {
     max-width: 1000px;
-    margin: 16px auto;
-    padding: 0 12px;
+    margin: 20px auto;
+    padding: 0 15px;
 }
 
-.hero-card {
-    background: linear-gradient(135deg, #181920 0%, #121318 100%);
-    border: 1px solid #232530;
-    border-radius: 16px;
-    padding: 20px;
+.hero-image-card {
     position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #181b2a;
+    border: 1px solid #282c40;
+    height: 220px;
 }
 
-.hero-brand {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
-}
-
-.h-icon {
-    font-size: 18px;
-}
-
-.h-title {
-    font-size: 16px;
-    font-weight: 700;
-}
-
-.verified-badge {
-    color: #c084fc;
-    font-size: 13px;
-}
-
-.hero-desc {
-    color: #9aa0a6;
-    font-size: 12px;
-    line-height: 1.5;
+.hero-banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.3s ease;
 }
 
 .slider-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid #2f3242;
-    color: #fff;
-    width: 32px;
-    height: 32px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.slider-arrow.prev { left: -10px; }
-.slider-arrow.next { right: -10px; }
+.slider-arrow.prev { left: 12px; }
+.slider-arrow.next { right: 12px; }
 
 .slider-dots {
     display: flex;
     justify-content: center;
-    gap: 6px;
-    margin-top: 10px;
+    gap: 8px;
+    margin-top: 12px;
 }
 
 .dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background: #2a2c38;
+    background: #282c40;
+    cursor: pointer;
 }
 
 .dot.active {
     background: #c084fc;
-    width: 20px;
+    width: 24px;
     border-radius: 10px;
 }
 
-/* KATALOG PRODUK (2 KOLOM BERJEJER) */
+/* CONTAINER & PRODUCT GRID */
 .container {
     max-width: 1000px;
-    margin: 20px auto;
-    padding: 0 10px;
+    margin: 30px auto;
+    padding: 0 15px;
 }
 
 .section-title {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
-    margin-bottom: 14px;
+    margin-bottom: 20px;
 }
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 Kolom per baris */
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
 }
 
 .product-card {
-    background: #12131a;
-    border: 1px solid #232535;
-    border-radius: 12px;
-    padding: 10px;
+    background: #141724;
+    border: 1px solid #232738;
+    border-radius: 16px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 .p-top-info {
     display: flex;
     align-items: center;
-    gap: 6px;
-}
-
-.p-icon {
-    color: #c084fc;
-    font-size: 13px;
+    gap: 8px;
+    margin-bottom: 4px;
 }
 
 .p-title-text {
+    font-size: 15px;
     font-weight: 700;
-    font-size: 12px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .p-status {
-    font-size: 10px;
-    color: #4ade80;
-    margin-top: 2px;
+    color: #10b981;
+    font-size: 11px;
+    margin-bottom: 4px;
 }
 
 .rating {
-    color: #ffb703;
-    font-size: 10px;
-    margin: 4px 0;
+    color: #f59e0b;
+    font-size: 12px;
+    margin-bottom: 12px;
 }
 
-.rate-count {
-    color: #717686;
-}
+.rate-count { color: #9ca3af; }
 
-/* GAMBAR PRODUK */
 .product-img-box {
     width: 100%;
-    border-radius: 8px;
+    height: 140px;
+    border-radius: 12px;
     overflow: hidden;
-    margin: 6px 0;
-    border: 1px solid #232535;
+    margin-bottom: 12px;
 }
 
 .product-img {
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
     object-fit: cover;
 }
 
 .p-desc {
-    font-size: 10px;
-    color: #9aa0a6;
-    line-height: 1.3;
-    margin-bottom: 6px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.tag-os {
-    font-size: 8px;
-    font-weight: 700;
-    color: #a855f7;
-    background: rgba(168, 85, 247, 0.1);
-    padding: 3px 6px;
-    border-radius: 4px;
-    width: fit-content;
+    font-size: 12px;
+    color: #9ca3af;
     margin-bottom: 8px;
 }
 
-.price-val {
-    font-size: 13px;
-    font-weight: 700;
-    color: #4ade80;
+.tag-os {
+    font-size: 11px;
+    color: #c084fc;
+    background: rgba(192, 132, 252, 0.1);
+    padding: 4px 8px;
+    border-radius: 6px;
+    width: fit-content;
+    margin-bottom: 12px;
 }
 
-/* TOMBOL DEMO & BUY */
+.price-row {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 14px;
+}
+
 .card-buttons {
     display: flex;
-    gap: 6px;
-    margin-top: 8px;
+    gap: 8px;
+    margin-top: auto;
 }
 
-.btn-demo {
+.btn-demo, .btn-buy {
     flex: 1;
-    background: #e11d48;
+    padding: 8px;
+    border-radius: 8px;
     border: none;
-    color: #fff;
-    padding: 6px 0;
-    border-radius: 6px;
-    font-size: 11px;
     font-weight: 600;
+    font-size: 12px;
     cursor: pointer;
 }
 
-.btn-buy {
-    flex: 1;
-    background: #c084fc;
-    border: none;
-    color: #000;
-    padding: 6px 0;
-    border-radius: 6px;
-    font-size: 11px;
-    font-weight: 700;
-    cursor: pointer;
-}
+.btn-demo { background: #232738; color: #fff; }
+.btn-buy { background: #3b82f6; color: #fff; }
 
-/* MODAL OVERLAY & CHECKOUT */
+/* MODAL OVERLAY */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    padding: 12px;
 }
 
-.checkout-card {
-    background: #121318;
-    width: 100%;
-    max-width: 440px;
+.checkout-card, .modal-content {
+    background: #141724;
+    border: 1px solid #232738;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 480px;
     max-height: 90vh;
     overflow-y: auto;
-    border-radius: 16px;
-    border: 1px solid #232530;
-    color: #fff;
-    padding: 16px;
+    padding: 20px;
 }
 
-.checkout-header {
+.checkout-header, .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #232530;
-    padding-bottom: 10px;
-    margin-bottom: 14px;
+    border-bottom: 1px solid #232738;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
 }
 
 .close-modal {
-    background: none;
+    background: transparent;
     border: none;
-    color: #888;
+    color: #fff;
     font-size: 20px;
     cursor: pointer;
 }
 
-.step-box {
-    background: #1a1c23;
-    border-radius: 12px;
-    padding: 12px;
-    margin-bottom: 12px;
-    border: 1px solid #282a36;
-}
+.step-box { margin-bottom: 16px; }
 
 .step-title {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.5px;
+    color: #9ca3af;
     margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
 }
 
 .step-num {
-    background: #282a36;
-    color: #c084fc;
-    width: 18px;
-    height: 18px;
+    background: #3b82f6;
+    color: #fff;
+    padding: 2px 6px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 10px;
+    margin-right: 4px;
 }
 
 .voucher-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    gap: 10px;
 }
 
 .voucher-item {
-    background: #21232d;
-    border: 1px solid #2f3242;
-    border-radius: 8px;
-    padding: 8px;
+    background: #181b2a;
+    border: 1px solid #282c40;
+    border-radius: 10px;
+    padding: 10px;
     cursor: pointer;
-    transition: all 0.2s;
 }
 
 .voucher-item.active {
@@ -394,157 +375,77 @@ body {
     background: rgba(192, 132, 252, 0.08);
 }
 
-.voucher-item.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
 .v-header {
     display: flex;
     justify-content: space-between;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
 }
 
-.v-check {
-    color: #c084fc;
-    display: none;
-}
-
-.voucher-item.active .v-check {
-    display: inline;
-}
+.v-check { color: #c084fc; display: none; }
+.voucher-item.active .v-check { display: inline; }
 
 .v-price {
     font-size: 13px;
     font-weight: 700;
-    color: #c084fc;
-    margin-top: 2px;
-}
-
-.status-habis {
-    font-size: 9px;
-    color: #ff4d4d;
-    font-weight: 700;
+    margin-top: 4px;
 }
 
 .payment-option {
-    background: #21232d;
+    background: #181b2a;
     border: 1px solid #c084fc;
-    background: rgba(192, 132, 252, 0.08);
-    border-radius: 8px;
-    padding: 10px;
+    border-radius: 10px;
+    padding: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.pay-opt-text strong {
     font-size: 12px;
-    display: block;
 }
 
 .free-badge {
-    font-size: 10px;
-    color: #c084fc;
     display: block;
-}
-
-.pay-check {
-    color: #c084fc;
-}
-
-.form-group {
-    margin-bottom: 8px;
-}
-
-.form-group label {
-    display: block;
+    color: #10b981;
     font-size: 10px;
-    color: #8f94a6;
-    margin-bottom: 4px;
+    margin-top: 2px;
 }
 
-.co-input {
+.pay-check { color: #c084fc; }
+
+.form-group { margin-bottom: 10px; }
+.form-group label { display: block; font-size: 11px; margin-bottom: 4px; color: #9ca3af; }
+
+.co-input, .modal-input, .promo-input {
     width: 100%;
-    background: #121318;
-    border: 1px solid #2f3242;
-    border-radius: 8px;
-    padding: 8px;
-    color: #fff;
-    font-size: 12px;
-}
-
-.input-note {
-    font-size: 9px;
-    color: #6a6e7d;
-}
-
-.promo-row {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 10px;
-}
-
-.promo-input {
-    flex: 1;
-    background: #1a1c23;
-    border: 1px solid #2f3242;
-    border-radius: 6px;
-    padding: 6px 10px;
-    color: #fff;
-    font-size: 11px;
-}
-
-.btn-promo {
-    background: #282a36;
-    border: 1px solid #3f4255;
-    color: #ccc;
-    border-radius: 6px;
-    padding: 0 10px;
-    font-size: 10px;
-    cursor: pointer;
-}
-
-.sum-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 11px;
-    color: #a0a5b5;
-    margin-bottom: 4px;
-}
-
-.total-row {
-    font-weight: 700;
-    color: #fff;
-    font-size: 12px;
-    margin-top: 6px;
-}
-
-.total-price {
-    color: #c084fc;
-    font-size: 15px;
-}
-
-.btn-buy-now {
-    width: 100%;
-    background: #c084fc;
-    border: none;
     padding: 10px;
-    border-radius: 20px;
+    background: #090a10;
+    border: 1px solid #232738;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 12px;
+}
+
+.input-note { font-size: 10px; color: #6b7280; }
+
+.promo-row { display: flex; gap: 8px; margin-bottom: 12px; }
+.btn-promo { background: #232738; color: #fff; border: none; padding: 0 12px; border-radius: 8px; font-size: 12px; }
+
+.price-summary { font-size: 12px; margin-bottom: 16px; }
+.sum-row { display: flex; justify-content: space-between; margin-bottom: 6px; color: #9ca3af; }
+.total-row { border-top: 1px solid #232738; padding-top: 8px; color: #fff; font-weight: 700; font-size: 14px; }
+.total-price { color: #c084fc; }
+
+.btn-buy-now, .modal-submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: #c084fc;
     color: #000;
     font-weight: 700;
-    font-size: 13px;
-    margin-top: 8px;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
-    transition: 0.2s;
 }
 
-.btn-buy-now:hover {
-    background: #a855f7;
-}
-
-/* FLOATING SUPPORT BUTTON & COMMUNITY TOGGLE */
+/* FLOATING COMMUNITY CS */
 .floating-community {
     position: fixed;
     bottom: 20px;
@@ -556,158 +457,43 @@ body {
     z-index: 999;
 }
 
-/* Tombol Headset Utama (Bisa Diklik) */
-.main-float-btn {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #a855f7, #6b21a8);
-    border: 2px solid #c084fc;
-    color: #ffffff;
-    font-size: 22px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.main-float-btn:hover {
-    transform: scale(1.08);
-    box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
-}
-
-/* Container Menu Tersembunyi */
 .float-menu {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     transition: all 0.3s ease;
-    opacity: 1;
-    transform: translateY(0);
 }
 
-/* Class untuk Sembunyikan Menu */
 .float-menu.hidden {
     opacity: 0;
     pointer-events: none;
-    transform: translateY(15px);
+    transform: translateY(10px);
 }
 
 .float-btn {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 18px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 700;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    transition: transform 0.2s;
-}
-
-.float-btn:hover {
-    transform: translateY(-2px);
-}
-
-.btn-telegram {
-    background: #229ed9;
-    color: #ffffff;
-}
-
-.btn-whatsapp {
-    background: #25d366;
-    color: #ffffff;
-}
-
-/* ==========================================
-   ANIMASI SPLASH SCREEN (DRIP CLIENT BY NIEL)
-   ========================================== */
-.splash-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: #0b0c10;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 99999;
-    transition: opacity 0.6s ease, visibility 0.6s ease;
-}
-
-.splash-content {
-    text-align: center;
-    animation: zoomIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-.splash-logo {
-    width: 85px;
-    height: 85px;
+    gap: 8px;
+    padding: 10px 14px;
     border-radius: 20px;
-    box-shadow: 0 0 25px rgba(192, 132, 252, 0.5);
-    margin-bottom: 15px;
-    object-fit: cover;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
-.splash-title {
-    font-size: 26px;
-    font-weight: 800;
-    color: #ffffff;
-    letter-spacing: 3px;
-    margin-bottom: 4px;
-}
+.btn-telegram { background: #0088cc; }
+.btn-whatsapp { background: #25d366; }
 
-.splash-by {
-    font-size: 13px;
-    font-weight: 700;
-    color: #c084fc;
-    letter-spacing: 4px;
-    margin-bottom: 25px;
-}
-
-.splash-loader {
-    width: 140px;
-    height: 3px;
-    background: #1f2128;
-    margin: 0 auto;
-    border-radius: 4px;
-    position: relative;
-    overflow: hidden;
-}
-
-.splash-loader::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, #c084fc, transparent);
-    animation: loadingBar 1.5s infinite;
-}
-
-.splash-hidden {
-    opacity: 0;
-    visibility: hidden;
-}
-
-/* KEYFRAMES ANIMASI */
-@keyframes zoomIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.4);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes loadingBar {
-    0% { left: -100%; }
-    100% { left: 100%; }
+.main-float-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #c084fc;
+    color: #000;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
