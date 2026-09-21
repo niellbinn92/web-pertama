@@ -37,24 +37,18 @@
         </div>
     </header>
 
-    <!-- HERO BANNER SLIDER -->
+    <!-- HERO BANNER SLIDER (DENGAN GAMBAR HERO) -->
     <div class="hero-slider-container">
-        <div class="hero-card">
-            <div class="hero-content">
-                <div class="hero-brand">
-                    <span class="h-icon">🛡️</span>
-                    <span class="h-title">Drip Client <i class="fa-solid fa-circle-check verified-badge"></i></span>
-                </div>
-                <p class="hero-desc">
-                    We have been operating in the market for years, offering mobile mods and emulators with high performance, stability, and real support. Quality, innovation, and trust all in one place.
-                </p>
-            </div>
-            <button class="slider-arrow prev"><i class="fa-solid fa-chevron-left"></i></button>
-            <button class="slider-arrow next"><i class="fa-solid fa-chevron-right"></i></button>
+        <div class="hero-card hero-image-card">
+            <!-- Gambar Hero Slider 1 & 2 dari ImgBB -->
+            <img id="heroImage" src="https://i.ibb.co.com/gZk0y1Mw/banner1.jpg" alt="Hero Banner Drip" class="hero-banner-img">
+
+            <button class="slider-arrow prev" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="slider-arrow next" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
         <div class="slider-dots">
-            <span class="dot active"></span>
-            <span class="dot"></span>
+            <span class="dot active" onclick="setSlide(0)"></span>
+            <span class="dot" onclick="setSlide(1)"></span>
         </div>
     </div>
 
@@ -68,7 +62,7 @@
             <div class="product-card">
                 <div class="p-top-info">
                     <span class="p-icon"><i class="fa-brands fa-android"></i></span>
-                    <span class="p-title-text">DRIP MOD APK</span>
+                    <span class="p-title-text">DRIP APKMOD</span>
                 </div>
                 <div class="p-status"><i class="fa-solid fa-circle-check"></i> Verified</div>
                 <div class="rating">★★★★★ <span class="rate-count">5 (183)</span></div>
@@ -86,7 +80,7 @@
                 
                 <div class="card-buttons">
                     <button class="btn-demo"><i class="fa-solid fa-play"></i> Demo</button>
-                    <button class="btn-buy" onclick="beliProduk('DRIP MOD APK')"><i class="fa-solid fa-cart-shopping"></i> Buy</button>
+                    <button class="btn-buy" onclick="beliProduk('DRIP APKMOD')"><i class="fa-solid fa-cart-shopping"></i> Buy</button>
                 </div>
             </div>
 
@@ -182,8 +176,6 @@
             <div class="checkout-body">
                 <div class="step-box">
                     <div class="step-title"><span class="step-num">1</span> PILIH NOMINAL VOUCHER</div>
-                    
-                    <!-- Pilihan Voucher Dinamis via JavaScript -->
                     <div class="voucher-grid" id="voucherContainer"></div>
                 </div>
 
@@ -248,7 +240,7 @@
         </div>
     </div>
 
-    <!-- TOMBOL FLOATING COMMUNITY (MENU TERSEMBUNYI) -->
+    <!-- TOMBOL FLOATING COMMUNITY (MENU CS TOGGLE) -->
     <div class="floating-community">
         <div id="floatMenu" class="float-menu hidden">
             <a href="https://t.me/Niellstorez" target="_blank" class="float-btn btn-telegram">
@@ -266,7 +258,7 @@
         </button>
     </div>
 
-    <!-- SCRIPT TERTUTUP OTOMATIS SPLASH SCREEN -->
+    <!-- SPLASH SCREEN TIMER -->
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
