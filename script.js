@@ -18,7 +18,7 @@ window.beliProduk = function (namaProduk) {
   }
 
   // Reset Pilihan Durasi & Harga ke Default
-  selectedHarga = 6000;
+  selectedHarga = 1760;
   selectedDurasi = '1 Hari';
 
   const summaryHargaEl = document.getElementById('summaryHarga');
@@ -219,4 +219,15 @@ window.simpanAkunUser = function () {
   localStorage.setItem('userDripStore', JSON.stringify({ nama, email }));
   alert(`Selamat datang, ${nama}! Data berhasil disimpan.`);
   window.tutupModalAkun();
+};
+
+// ==========================================
+// 4. FUNGSI FLOATING COMMUNITY MENU (CS TOGGLE)
+// ==========================================
+
+window.toggleCommunityMenu = function () {
+  const menu = document.getElementById('floatMenu');
+  if (menu) {
+    menu.classList.toggle('hidden');
+  }
 };
