@@ -1,6 +1,33 @@
+// Data Produk dan Daftar Durasi/Harga
+const DATA_PRODUK = {
+  'DRIP APKMOD': [
+    { durasi: '1Day', harga: 8500 },
+    { durasi: '3Day', harga: 20000 },
+    { durasi: '7Day', harga: 35000 },
+    { durasi: '15Day', harga: 55000 },
+    { durasi: '30Day', harga: 80000 }
+  ],
+  'DRIP PROXY': [
+    { durasi: '1Day', harga: 8500 },
+    { durasi: '3Day', harga: 20000 },
+    { durasi: '7Day', harga: 35000 },
+    { durasi: '30Day', harga: 70000 }
+  ],
+  'DRIP WIRE': [
+    { durasi: '6Jam', harga: 6000 },
+    { durasi: '1Day', harga: 16500 },
+    { durasi: '7Day', harga: 35000 }
+  ],
+  'DRIP ROOT': [
+    { durasi: '1Day', harga: 16000 },
+    { durasi: '7Day', harga: 50000 },
+    { durasi: '30Day', harga: 140000 }
+  ]
+};
+
 // Variable Global
-let selectedHarga = 6000;
-let selectedDurasi = '1 Hari';
+let selectedHarga = 0;
+let selectedDurasi = '';
 let selectedProduk = '';
 
 // ==========================================
@@ -17,23 +44,35 @@ window.beliProduk = function (namaProduk) {
     checkoutTitleEl.innerText = namaProduk;
   }
 
-  // Reset Pilihan Durasi & Harga ke Default
-  selectedHarga = 1760;
-  selectedDurasi = '1 Hari';
+  // Ambil daftar variasi harga berdasarkan produk yang dipilih
+  const listVariasi = DATA_PRODUK[namaProduk] || [];
+  const container = document.getElementById('voucherContainer');
 
-  const summaryHargaEl = document.getElementById('summaryHarga');
-  const summaryTotalEl = document.getElementById('summaryTotal');
-  if (summaryHargaEl)
-    summaryHargaEl.innerText = 'Rp' + selectedHarga.toLocaleString('id-ID');
-  if (summaryTotalEl)
-    summaryTotalEl.innerText = 'Rp' + selectedHarga.toLocaleString('id-ID');
+  if (container && listVariasi.length > 0) {
+    container.innerHTML = ''; // Kosongkan elemen lama
 
-  // Reset Tampilan Visual Pilihan Voucher
-  const items = document.querySelectorAll('.voucher-item');
-  items.forEach((el) => el.classList.remove('active'));
-  if (items.length > 0) {
-    items[0].classList.add('active'); // Pilih item pertama sebagai default
+    listVariasi.forEach((item, index) => {
+      const isFirst = index === 0;
+      if (isFirst) {
+        selectedDurasi = item.durasi;
+        selectedHarga = item.harga;
+      }
+
+      const itemHtml = `
+        <div class="voucher-item ${isFirst ? 'active' : ''}" onclick="pilihDurasi(this, '${item.durasi}', ${item.harga})">
+            <div class="v-header">
+                <span class="v-duration">${item.durasi}</span>
+                <i class="fa-solid fa-circle-check v-check"></i>
+            </div>
+            <div class="v-price">Rp${item.harga.toLocaleString('id-ID')}</div>
+        </div>
+      `;
+      container.innerHTML += itemHtml;
+    });
   }
+
+  // Update Tampilan Summary Harga
+  updateSummaryHarga();
 
   // Tampilkan Modal
   const modalCheckoutEl = document.getElementById('modalCheckout');
@@ -65,14 +104,17 @@ window.pilihDurasi = function (element, durasi, harga) {
   selectedDurasi = durasi;
   selectedHarga = harga;
 
-  // Format Rupiah
-  const formattedHarga = 'Rp' + harga.toLocaleString('id-ID');
+  updateSummaryHarga();
+};
+
+function updateSummaryHarga() {
+  const formattedHarga = 'Rp' + selectedHarga.toLocaleString('id-ID');
   const summaryHargaEl = document.getElementById('summaryHarga');
   const summaryTotalEl = document.getElementById('summaryTotal');
 
   if (summaryHargaEl) summaryHargaEl.innerText = formattedHarga;
   if (summaryTotalEl) summaryTotalEl.innerText = formattedHarga;
-};
+}
 
 // ==========================================
 // 2. PROSES PEMBELIAN & FIRESTORE INTEGRATION
@@ -106,8 +148,7 @@ async function prosesBeliKeyDenganDurasi(durasi, nama, wa) {
       return;
     }
 
-    // Contoh Query Firestore: Mengambil key yang masih tersedia ('available')
-    // Sesuai dengan koleksi "keys" di Firestore kamu
+    // Query Firestore: Mengambil key yang masih tersedia ('available')
     const snapshot = await db
       .collection('keys')
       .where('produk', '==', selectedProduk)
@@ -134,7 +175,7 @@ async function prosesBeliKeyDenganDurasi(durasi, nama, wa) {
       keyData = doc.data();
     });
 
-    // Tandai key sebagai dibeli (opsional)
+    // Tandai key sebagai dibeli
     await db.collection('keys').doc(docId).update({
       status: 'pending_payment',
       pembeliNama: nama,
@@ -153,7 +194,7 @@ async function prosesBeliKeyDenganDurasi(durasi, nama, wa) {
 
 // Fungsi Helper untuk mengirim format pesanan ke WhatsApp
 function kirimKeWhatsApp(nama, wa, key) {
-  const nomorAdmin = '62895603099950'; // Ganti dengan nomor WA Admin kamu
+  const nomorAdmin = '62895603099950';
 
   let infoKey = '';
   if (key && key !== 'STOK_HABIS') {
