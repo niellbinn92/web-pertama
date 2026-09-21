@@ -292,10 +292,12 @@
         </div>
     </div>
 
-    <!-- TOMBOL FLOATING COMMUNITY -->
-    <div class="floating-community">
+   <!-- TOMBOL FLOATING COMMUNITY (TOGGLE) -->
+<div class="floating-community">
+    <!-- Menu Pilihan (Sembunyi secara default) -->
+    <div id="floatMenu" class="float-menu hidden">
         <a href="https://t.me/Niellstorez" target="_blank" class="float-btn btn-telegram">
-            <i class="fa-paper-plane fa-brands"></i>
+            <i class="fa-brands fa-paper-plane"></i>
             <span>Telegram</span>
         </a>
         <a href="https://wa.me/message/WJ5IVCIPK4DBP1" target="_blank" class="float-btn btn-whatsapp">
@@ -304,6 +306,11 @@
         </a>
     </div>
 
+    <!-- Tombol Utama CS -->
+    <button class="main-float-btn" onclick="toggleCommunityMenu()">
+        <i class="fa-solid fa-headset"></i>
+    </button>
+</div>
     <!-- SCRIPT TERTUTUP OTOMATIS SPLASH SCREEN -->
     <script>
         window.addEventListener('DOMContentLoaded', () => {
