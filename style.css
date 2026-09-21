@@ -1,56 +1,231 @@
-/* TAMPILAN TOMBOL LOGIN & DAFTAR */
-.auth-btn {
-    padding: 8px 18px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: none;
+/* CHECKOUT MODAL STYLE (DARK THEME) */
+.checkout-card {
+    background: #121318;
+    width: 100%;
+    max-width: 450px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 16px;
+    border: 1px solid #232530;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    padding: 20px;
 }
 
-.btn-login {
-    background: transparent;
-    color: #ffffff;
-    border: 1px solid #4a4a5a;
-    margin-right: 8px;
+.checkout-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #232530;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
 }
 
-.btn-login:hover {
-    background: rgba(255, 255, 255, 0.1);
+.step-box {
+    background: #1a1c23;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 14px;
+    border: 1px solid #282a36;
 }
 
-.btn-daftar {
-    background: #00bcd4; /* Warna Cyan persis gambar kedua */
-    color: #000000;
+.step-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.btn-daftar:hover {
-    background: #00acc1;
-    transform: translateY(-1px);
+.step-num {
+    background: #282a36;
+    color: #fff;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
 }
 
-/* MODAL PILIH DURASI */
-.durasi-options-grid {
+/* VOUCHER GRID */
+.voucher-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-    margin-top: 15px;
 }
 
-.btn-durasi {
-    padding: 12px;
-    background: #2a2a3c;
-    border: 1px solid #3f3f5a;
-    color: #fff;
-    border-radius: 8px;
+.voucher-item {
+    background: #21232d;
+    border: 1px solid #2f3242;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.voucher-item.active {
+    border-color: #00f2fe;
+    background: #182830;
+}
+
+.voucher-item.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.v-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
     font-weight: 600;
+}
+
+.v-check {
+    color: #00f2fe;
+    display: none;
+}
+
+.voucher-item.active .v-check {
+    display: inline;
+}
+
+.v-price {
+    font-size: 15px;
+    font-weight: 700;
+    color: #00f2fe;
+    margin: 4px 0;
+}
+
+.v-sub {
+    font-size: 9px;
+    color: #8f94a6;
+}
+
+.status-habis {
+    color: #ff4d4d;
+    font-weight: 700;
+}
+
+/* PEMBAYARAN */
+.payment-option {
+    background: #21232d;
+    border: 1px solid #00f2fe;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.pay-opt-text strong {
+    font-size: 13px;
+    display: block;
+}
+
+.free-badge {
+    font-size: 10px;
+    color: #00f2fe;
+    display: block;
+}
+
+.pay-check {
+    color: #00f2fe;
+}
+
+/* FORM INPUT */
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 11px;
+    color: #8f94a6;
+    margin-bottom: 4px;
+}
+
+.co-input {
+    width: 100%;
+    background: #121318;
+    border: 1px solid #2f3242;
+    border-radius: 8px;
+    padding: 10px;
+    color: #fff;
+    font-size: 13px;
+}
+
+.input-note {
+    font-size: 10px;
+    color: #6a6e7d;
+}
+
+/* SUMMARY & TOMBOL */
+.promo-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.promo-input {
+    flex: 1;
+    background: #1a1c23;
+    border: 1px solid #2f3242;
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: #fff;
+    font-size: 11px;
+}
+
+.btn-promo {
+    background: #282a36;
+    border: 1px solid #3f4255;
+    color: #ccc;
+    border-radius: 8px;
+    padding: 0 12px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.sum-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #a0a5b5;
+    margin-bottom: 6px;
+}
+
+.total-row {
+    font-weight: 700;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.total-price {
+    color: #00f2fe;
+    font-size: 18px;
+}
+
+.btn-buy-now {
+    width: 100%;
+    background: #00f2fe;
+    border: none;
+    padding: 12px;
+    border-radius: 25px;
+    color: #000;
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 10px;
     cursor: pointer;
     transition: 0.2s;
 }
 
-.btn-durasi:hover {
-    background: #c084fc;
-    color: #000;
-    border-color: #c084fc;
+.btn-buy-now:hover {
+    background: #00c8d4;
 }
